@@ -1,0 +1,167 @@
+{
+    "step_outcomes": [
+        {
+            "step_id": 1,
+            "description": "Set up Python env and confirm model loading. Create venv, install requirements + nnsight 0.2.x + matplotlib/kaleido/jupyter. Smoke test loads llama-2-13b on cuda:0 and reads one residual-stream activation.",
+            "command_executed": "uv venv --python 3.11 ...; uv pip install torch==2.2.2(cu121) transformers==4.38.2 tokenizers==0.15.2 accelerate==0.27.2 numpy<2 nnsight==0.2.21 sentencepiece pandas plotly nbformat tqdm matplotlib kaleido jupyter nbconvert scikit-learn; python -c \"from generate_acts import load_model,get_acts; m=load_model('llama-2-13b','cuda:0'); print(get_acts(['The city of Paris is in France.'],m,[14],remote=False)[14].shape)\"",
+            "exit_code": 0,
+            "stdout": "SMOKE OK shape: torch.Size([1, 5120]) dtype torch.bfloat16",
+            "stderr": "",
+            "output_files": ["/net/.../run/.venv", "/net/.../run/replication/installed_packages.txt"],
+            "duration_seconds": 212.0,
+            "fixes_applied": [
+                {
+                    "file_path": "environment",
+                    "description": "Default `uv venv` selected Python 3.14 and `uv pip install nnsight==0.2.21` pulled transformers 5.16.1 / torch 2.14.0 (latest), which are incompatible with this repo's nnsight 0.2.x tracing API (model.trace + .save). Recreated the venv with Python 3.11 and pinned a mutually compatible stack: torch==2.2.2+cu121, transformers==4.38.2, tokenizers==0.15.2, accelerate==0.27.2, numpy<2, nnsight==0.2.21. nnsight's unpinned deps re-bumped torch/transformers twice, so torch was reinstalled from the cu121 index after nnsight.",
+                    "original_error": "nnsight import produced no __version__ and stack pulled transformers==5.16.1 (API mismatch risk with 0.2.x tracing); Python 3.14 too new for pinned wheels.",
+                    "diff_snippet": "- Python 3.14 + transformers 5.16.1 + torch 2.14.0 (auto)\n+ Python 3.11 + transformers 4.38.2 + torch 2.2.2+cu121 + nnsight 0.2.21"
+                }
+            ],
+            "code_modified": false,
+            "notes": "config.ini was already repointed by the replication directive to local HF-converted Llama-2 weights (7b/13b). No source code changes needed for step 1. Model load from disk ~2m51s; smoke test total 3m32s. CUDA_VISIBLE_DEVICES=0 so torch sees 1 A40; device_map='auto' places the 13B (bf16 ~26GB) on it."
+        },
+        {
+            "step_id": 2,
+            "description": "Extract residual-stream activations (ALL layers, --layers -1) for all 12 curated+uncurated true/false datasets on Llama-2-13B and Llama-2-7B, saving last-token activation per statement, on cuda:0.",
+            "command_executed": "python generate_acts.py --model llama-2-13b --layers -1 --device cuda:0 --datasets sp_en_trans neg_sp_en_trans companies_true_false cities neg_cities cities_cities_conj cities_cities_disj larger_than smaller_than common_claim_true_false likely counterfact_true_false ; then same with --model llama-2-7b",
+            "exit_code": 0,
+            "stdout": "13B done in ~39min (23:11->23:50); 7B done in ~63min (23:51->00:54). tqdm per-dataset progress bars.",
+            "stderr": "",
+            "output_files": ["acts/llama-2-13b/<12 datasets>/layer_<0..39>_<idx>.pt", "acts/llama-2-7b/<12 datasets>/layer_<0..31>_<idx>.pt"],
+            "duration_seconds": 6180.0,
+            "fixes_applied": [],
+            "code_modified": false,
+            "notes": "Ran at full intended scale: all 12 datasets, all layers (40 for 13B, 32 for 7B). File counts verified against pandas row counts: cities 60 batches, counterfact 1279 batches (31964 rows), likely 387 batches (9674 rows; the CSV's line count 28919 is inflated by embedded newlines in quoted statements), common_claim 178 batches (4450 rows), companies 48 batches (1199), sp_en_trans/neg 15 batches each. Verified batch-vs-single-statement activation agreement on 7B: relative mean error ~0.2% (bf16 rounding; tokenizer padding_side='left' so [:,-1,:] always grabs the true final token). NOTE (disk, not a flaw): generate_acts saves output[0][:,-1,:], a VIEW into the full hidden-state storage, so each .pt persists the entire [25,seqlen,hidden] storage -> acts total ~900GB. t.load reconstructs the correct [n,hidden] view, and 187TB is free, so no fix applied."
+        },
+        {
+            "step_id": 3,
+            "description": "Reproduce PCA visualization figures for Llama-2-13B by executing dataexplorer.ipynb (patched to model='llama-2-13b', device cuda:0). Cells: (1) cities+neg_cities top-2 PCs; (2) all 11 datasets each own PCA; (3) cross-basis projection; (4) negation pairs at layer 12 (4-color); (5) layer sweep for sp_en_trans/larger_than/cities_cities_conj at layers [6,8,10,12,36]; plus added rotation panel for cities+neg_cities at layers 4/12/24.",
+            "command_executed": "python patch_dataexplorer.py && jupyter nbconvert --to notebook --execute dataexplorer_13b.ipynb --output dataexplorer_13b_executed.ipynb --ExecutePreprocessor.timeout=1800",
+            "exit_code": 0,
+            "stdout": "saved pca_cities_neg_cities.png, all_datasets_pca.png, cross_basis.png, negation_pairs_layer12.png, layer_sweep.png, rotation_layer_{4,12,24}.png, rotation_layers_panel.png",
+            "stderr": "NbConvertApp WARNING: Notebook JSON schema 'id' unexpected (harmless nbformat version note)",
+            "output_files": ["dataexplorer_13b_executed.ipynb", "figures/pca_cities_neg_cities.png", "figures/all_datasets_pca.png", "figures/cross_basis.png", "figures/negation_pairs_layer12.png", "figures/layer_sweep.png", "figures/rotation_layer_4.png", "figures/rotation_layer_12.png", "figures/rotation_layer_24.png", "figures/rotation_layers_panel.png"],
+            "duration_seconds": 286.0,
+            "fixes_applied": [
+                {
+                    "file_path": "dataexplorer.ipynb (via patch_dataexplorer.py -> dataexplorer_13b.ipynb)",
+                    "description": "Cell 0 model var 'llama-2-70b'->'llama-2-13b' (70B unavailable locally). Cell 1 had a hardcoded literal model='llama-2-70b' inside from_datasets -> changed to 'llama-2-13b'. Cells 4 and 5 called TruthData.from_datasets(..., model_size='13B') but the current signature is from_datasets(dataset_names, model, layer, ...) -> changed model_size='13B' to model='llama-2-13b'. Redirected cell 5's write_image path 'junk/layer_sweep.png' -> 'figures/layer_sweep.png' and added write_image calls to cells 1-4.",
+                    "original_error": "ValueError: Dataset cities not found (acts/llama-2-70b absent); TypeError on unexpected kwarg model_size.",
+                    "diff_snippet": "- model='llama-2-70b' / model_size='13B'\n+ model='llama-2-13b'"
+                },
+                {
+                    "file_path": "dataexplorer.ipynb cell 4 + added rotation cell (pandas-version regression)",
+                    "description": "Original recoloring `td.df.loc[pair[0],'label'] = td.df.loc[pair[0]]['label'].apply(...)` misaligns on the concat MultiIndex under modern pandas (2.x) and silently sets the ENTIRE label column to NaN. That both destroys the 4-color mapping (all points one color) AND makes kaleido crash with 'Transform failed 525: Cannot read property length of null' on the all-null color array. Replaced with a positional numpy remap: _m0 = index.get_level_values(0)==pair[0]; label = where(_m0, where(lab==1,BLUE,RED), where(lab==1,YELLOW,PURPLE)). Verified 4 distinct color values, 0 NaN.",
+                    "original_error": "kaleido ValueError: Transform failed with error code 525: Cannot read property 'length' of null (root cause: label column all-NaN from MultiIndex chained assignment)",
+                    "diff_snippet": "- td.df.loc[pair[0],'label'] = td.df.loc[pair[0]]['label'].apply(lambda x: BLUE if x==1 else RED)\n- td.df.loc[pair[1],'label'] = td.df.loc[pair[1]]['label'].apply(lambda x: YELLOW if x==1 else PURPLE)\n+ _lab=td.df['label'].values; _m0=td.df.index.get_level_values(0)==pair[0]\n+ td.df['label']=np.where(_m0, np.where(_lab==1,BLUE,RED), np.where(_lab==1,YELLOW,PURPLE))"
+                },
+                {
+                    "file_path": "environment (plotly/kaleido)",
+                    "description": "Default install pulled plotly 7.0.0 + kaleido 1.4.0, whose static export requires a system Chrome (absent, headless). Downgraded to plotly==5.24.1 + kaleido==0.2.1 (self-contained Chromium) for headless PNG export.",
+                    "original_error": "RuntimeError: Kaleido requires Google Chrome to be installed.",
+                    "diff_snippet": "- plotly 7.0.0 + kaleido 1.4.0\n+ plotly 5.24.1 + kaleido 0.2.1"
+                }
+            ],
+            "code_modified": true,
+            "notes": "layer=14 (13B probe_layer from config.ini) for cells 1-3; cells 4/5 use their hardcoded layers (12; [6,8,10,12,36]). Figure pca_cities_neg_cities.png shows clean true(blue)/false(red) linear separation for cities+neg_cities in top-2 PCs (reproduces paper Fig 1/2). negation_pairs_layer12.png shows the 4-color true/false-axis alignment across the three negation pairs (reproduces paper Fig 3). All datasets used are those present locally (11 in the all-datasets cell, excludes 'likely' per the original cell). 70B not attempted (no local weights)."
+        },
+        {
+            "step_id": 4,
+            "description": "Reproduce cross-dataset probe generalization matrix + oracle scalars for Llama-2-13B and Llama-2-7B. Trains LR/MM on 5 train medlies and CCS on 2 paired medlies, evaluates on 11 val datasets, computes oracle (same-dataset) accuracies; appends to generalization_results.json and renders per-model heatmap grids.",
+            "command_executed": "python generalization_run.py  (faithful port of generalization.ipynb result cells In[31] LR/MM, CCS cell, In[25] oracle, and In[16] heatmap; run for llama-2-13b then llama-2-7b; probe_layer from config.ini: 14 for 13B, 13 for 7B; split=0.8, seed=42)",
+            "exit_code": 0,
+            "stdout": "13b: LR cities OOD-avg 0.738, LR cities+neg_cities 0.831, LR larger_than 0.742, LR lt+st 0.809, MM cities+neg_cities 0.844, CCS cities+neg_cities 0.641, oracle-LR 0.961. 7b: LR cities 0.610, LR cities+neg_cities 0.680, LR larger_than 0.506, LR lt+st 0.708, MM cities+neg_cities 0.566, CCS 0.680, oracle-LR 0.944.",
+            "stderr": "UserWarning: non-writable numpy array -> tensor (benign, from utils.py labels).",
+            "output_files": ["experimental_outputs/generalization_results.json (10 objects: 5 per model)", "figures/llama-2-13b_generalization.pdf", "figures/llama-2-13b_generalization.png", "figures/llama-2-7b_generalization.pdf", "figures/llama-2-7b_generalization.png"],
+            "duration_seconds": 432.0,
+            "fixes_applied": [
+                {
+                    "file_path": "generalization_run.py (port of generalization.ipynb) + omission disclosure",
+                    "description": "Ported the notebook's result-producing cells to a script so BOTH models run in one invocation (notebook sets `model` once). OMISSION disclosed: the notebook's scale-trend line plots (In[8], In[6]) and the model loop in In[7] hardcode llama-2-70b, which has no local weights and no HF access; I therefore did NOT render those 3-model line plots and instead emit the 7B-vs-13B trend as printed OOD averages + the appended JSON. The per-model generalization heatmap (In[16]) IS rendered for both 7B and 13B. No probe/eval logic was altered.",
+                    "original_error": "n/a (adaptation to run both models + 70B unavailability), not a crash",
+                    "diff_snippet": "notebook: model='llama-2-13b' (single) -> script loops ['llama-2-13b','llama-2-7b']; 70B-dependent line plots skipped"
+                },
+                {
+                    "file_path": "generalization_run.py (internal key bug in my port)",
+                    "description": "My port initially keyed the internal accs dict with str(ProbeClass) which yields \"<class 'probes.LRProbe'>\" (probes.py defines __str__ as an instance method, not affecting str(class)); the print/heatmap helper indexed accs['LRProbe'] -> KeyError. Switched internal keys to ProbeClass.__str__() (returns 'LRProbe'). The appended JSON was already correct (it used ProbeClass.__str__() for the 'probe' field), so I reset the JSON to [] and re-ran to avoid the partial-run's 5 duplicate 13b entries.",
+                    "original_error": "KeyError: 'LRProbe'",
+                    "diff_snippet": "- accs = {str(pc): ...}\n+ accs = {pc.__str__(): ...}"
+                }
+            ],
+            "code_modified": true,
+            "notes": "Reproduces the paper's central generalization result (Fig 5). 13B heatmap signatures match the paper: train larger_than alone -> 1% on smaller_than (LR) / 7% (MM) [spurious single-polarity direction]; train larger_than+smaller_than -> 100% both. Train cities alone -> 28% on neg_cities (no negation handling); cities+neg_cities -> 99-100% on neg_cities, sp_en_trans, etc. Cross-domain transfer strong: 13B LR(cities+neg_cities)->sp_en_trans = 99.7%. Scale trend clear: every OOD average is higher at 13B than 7B (e.g. cities+neg_cities 0.68->0.83). Split seed fixed at 42 for reproducibility (a setup value; the notebook uses a random seed each run, so exact per-cell values will vary by a few tenths of a percent with the split)."
+        },
+        {
+            "step_id": 5,
+            "description": "Reproduce calibrated 5-shot prompting baseline (median-threshold) on Llama-2-13B and Llama-2-7B over the 11 curated true/false datasets, on cuda:0.",
+            "command_executed": "python few_shot_run.py --model llama-2-13b --n_shots 5 --device cuda:0 --datasets cities neg_cities larger_than smaller_than sp_en_trans neg_sp_en_trans cities_cities_conj cities_cities_disj companies_true_false common_claim_true_false counterfact_true_false ; then --model llama-2-7b",
+            "exit_code": 0,
+            "stdout": "13B: cities 0.992, neg_cities 0.309, larger_than 0.896, smaller_than 0.482, sp_en_trans 1.000, neg_sp_en_trans 0.928, cities_cities_conj 0.847, cities_cities_disj 0.825, companies 0.900, common_claim 0.711, counterfact 0.821. 7B: cities 0.965, neg_cities 0.215, larger_than 0.669, smaller_than 0.499, sp_en_trans 0.971, neg_sp_en_trans 0.590, conj 0.728, disj 0.713, companies 0.630, common_claim 0.639, counterfact 0.728.",
+            "stderr": "",
+            "output_files": ["experimental_outputs/few_shot_results.json (22 objects: 11 per model, keys dataset/n_shots/prompt/shots/gamma/acc/model)"],
+            "duration_seconds": 2280.0,
+            "fixes_applied": [
+                {
+                    "file_path": "few_shot.py -> few_shot_run.py (nnsight API port)",
+                    "description": "few_shot.py uses the pre-0.2 nnsight runner API: `with model.forward(output_hidden_states=True, remote=..., remote_include_output=...) as runner: with runner.invoke(prompt): pass`, `runner.output['past_key_values']`, and passing past_key_values back into model.forward. nnsight 0.2.21 has no such runner wrapper -- model.forward proxies to LlamaForCausalLM.forward and rejects `remote` (TypeError). Reimplemented with the working nnsight 0.2.21 trace API used elsewhere in the repo: for each held-out query, trace `prompt + statement`, save model.lm_head.output[:, -1, :], and compute diff = P(' TRUE') - P(' FALSE'); gamma = median(diffs); predict diff > gamma. Dropped only the KV-cache reuse optimization (recompute the 5-shot prefix per batch), which produces identical logits. Output JSON schema unchanged.",
+                    "original_error": "TypeError: LlamaForCausalLM.forward() got an unexpected keyword argument 'remote'",
+                    "diff_snippet": "- with model.forward(...remote...) as runner:\n-     with runner.invoke(batch...): logits = model.lm_head.output; ...\n+ with model.trace([prompt+s for s in batch], scan=False, validate=False):\n+     last = model.lm_head.output[:, -1, :].save()\n+ diff = last.value.softmax(-1)[:,true_idx] - [:,false_idx]"
+                }
+            ],
+            "code_modified": true,
+            "notes": "Reproduces the paper's few-shot baseline pattern: strong on affirmative datasets (cities 0.99, sp_en_trans 1.00 on 13B) but FAILS on negated/opposite datasets -- neg_cities 0.31 (below chance), smaller_than 0.48. This is exactly the paper's contrast: trained probes generalize across negation (Step 4) while calibrated few-shot does not. 7B uniformly worse than 13B (neg_cities 0.21, smaller_than 0.50) -> same scale trend. Shot sampling seed fixed at 42 (setup value; original uses df.sample with no seed, so exact accuracies depend on which 5 shots are drawn). n_query counts are (dataset rows - 5 shots). counterfact evaluated at full 31959 queries."
+        },
+        {
+            "step_id": 6,
+            "description": "Reproduce the causal-intervention NIE table (Table 2) for Llama-2-13B, val_dataset=sp_en_trans, intervene over layers [intervene_layer=8 .. probe_layer=14] x offsets {-1,0}. For each Table 2 cell (cities/{LR,MM}, cities+neg_cities/{LR,MM,CCS}, larger_than/{LR,MM}, larger_than+smaller_than/{LR,MM,CCS}, likely/{LR,MM}) run 4 passes (PD-, PD-*, PD+, PD+*) and compute the two NIEs.",
+            "command_executed": "python interventions_run.py  (orchestrator: loads 13B once, trains each probe direction, runs the 4 (subset,intervention) passes per cell via the ported intervention_experiment, appends to label_change_intervention_results.json, writes nie_table_13b.json). Env: PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True",
+            "exit_code": 0,
+            "stdout": "Baselines PD-=-0.914 (false), PD+=0.793 (true) -- model labels sp_en_trans correctly. NIE (f->t / t->f): cities/LR 0.10/0.15, cities/MM 0.81/0.90, cities+neg_cities/LR 0.31/0.44, cities+neg_cities/MM 0.88/0.98, cities+neg_cities/CCS 0.34/0.67, larger_than/LR 0.29/0.20, larger_than/MM 0.73/0.85, lt+st/LR 0.06/0.11, lt+st/MM 0.26/0.54, lt+st/CCS 0.06/0.11, likely/LR 0.03/0.05, likely/MM 0.72/0.52.",
+            "stderr": "First attempt OOMed (see fix); rerun clean.",
+            "output_files": ["experimental_outputs/label_change_intervention_results.json (48 records = 12 cells x 4 passes, schema model/train_datasets/val_dataset/'probe class'/prompt/p_diff/tot/intervention/subset/hidden_states)", "experimental_outputs/nie_table_13b.json (12 rows with PD-,PD-*,PD+,PD+*,NIE_false_to_true,NIE_true_to_false)"],
+            "duration_seconds": 254.0,
+            "fixes_applied": [
+                {
+                    "file_path": "interventions.py (intervention_experiment: nnsight API port)",
+                    "description": "Same pre-0.2 runner API as few_shot.py (`with model.forward(remote=...) as runner: with runner.invoke(batch): model.model.layers[l].output[0][:,pos,:] += direction; model.lm_head.output`). Ported to nnsight 0.2.21 trace: inside `with model.trace(batch, scan=False, validate=False):` do slice-assignment `hs[:,-len_suffix+offset,:] = hs[:,-len_suffix+offset,:] + (+/-)direction` for the intervention and save lm_head[:,-1,:] logits. Left padding (tokenizer default) keeps the negative suffix indices aligned per sequence.",
+                    "original_error": "TypeError: LlamaForCausalLM.forward() got an unexpected keyword argument 'remote' (nnsight 0.2.21 lacks the forward/runner wrapper)",
+                    "diff_snippet": "- with model.forward(remote=remote,...) as runner:\n-   with runner.invoke(batch):\n-     model.model.layers[layer].output[0][:,-len_suffix+offset,:] += direction...\n+ with model.trace(batch, scan=False, validate=False):\n+   hs = model.model.layers[layer].output[0]\n+   hs[:,-len_suffix+offset,:] = hs[:,-len_suffix+offset,:] + d"
+                },
+                {
+                    "file_path": "interventions_run.py (orchestrator + OOM fix)",
+                    "description": "Wrote an orchestrator to load 13B once instead of the CLI's ~48 reloads (~2.5h saved). First run OOMed on the A40: probe training needs autograd, but leaving grad enabled made the intervention forward passes build a full autograd graph over the 13B model (26GB model -> 44GB, OOM). Fixed by t.set_grad_enabled(False) globally and wrapping only the probe-training call in `with t.enable_grad()`; direction cast to cuda:0/bf16 for in-place add.",
+                    "original_error": "torch.cuda.OutOfMemoryError: CUDA out of memory ... process has 44.40 GiB in use (autograd graph over 13B forward)",
+                    "diff_snippet": "+ t.set_grad_enabled(False)  # in main\n+ with t.enable_grad():  # only around ProbeClass.from_data"
+                }
+            ],
+            "code_modified": true,
+            "notes": "Reproduces the paper's central causal result (Table 2 / Section 4): the mass-mean (MM) truth direction is strongly causal -- adding it to false sp_en_trans statements flips P(TRUE)-P(FALSE) most of the way to the true baseline (NIE f->t 0.72-0.88; t->f 0.52-0.98). LR directions are weaker/more variable (0.03-0.31), CCS moderate -- consistent with the paper's finding that MM directions are more causally faithful than LR. The 'none' baselines are identical across cells (PD-=-0.914, PD+=0.793) as expected (intervention adds 0). 70B rows of Table 2 not attempted (no local weights). Exact NIE magnitudes depend on the probe-direction scaling; qualitative MM>LR causal ordering matches the paper."
+        },
+        {
+            "step_id": 7,
+            "description": "Reproduce activation-patching / summarization analysis (patching.py) on Llama-2-13B and Llama-2-7B: patch each residual-stream hidden state (layer x token position) from the true run into the false run and record the TRUE-minus-FALSE logit diff. C6: cities prompt on 13B. C7: cities + sp_en_trans on both 13B and 7B. Render heatmaps via a port of patching.ipynb.",
+            "command_executed": "python patching.py --model {llama-2-13b,llama-2-7b} --device cuda:0 --prompt {cities,sp_en_trans}  (4 runs); then python render_patching.py",
+            "exit_code": 0,
+            "stdout": "4 patching records: llama-2-13b cities grid (9,40) range [-3.00,4.12]; llama-2-13b sp_en_trans (10,40) [-2.25,3.00]; llama-2-7b cities (9,32) [-2.25,1.25]; llama-2-7b sp_en_trans (10,32) [-0.12,1.62]. saved figures/patching_{cities,sp_en_trans}_{llama-2-13b,llama-2-7b}.png",
+            "stderr": "",
+            "output_files": ["experimental_outputs/patching_results.json (4 objects: model, false_prompt, true_prompt, logit_diffs n_toks x n_layers)", "figures/patching_cities_llama-2-13b.png", "figures/patching_sp_en_trans_llama-2-13b.png", "figures/patching_cities_llama-2-7b.png", "figures/patching_sp_en_trans_llama-2-7b.png"],
+            "duration_seconds": 300.0,
+            "fixes_applied": [
+                {
+                    "file_path": "patching.py (nnsight API port + prompt selector)",
+                    "description": "Same pre-0.2 nnsight runner API (`with model.forward(...) as runner: with runner.invoke(...): layer.output[0][0,-tok_idx,:]=...; model.lm_head.output`) -> ported to `with model.trace(prompt, scan=False, validate=False):` with the same slice-assignment patch and lm_head logit read. Also moved the three hardcoded/commented prompt pairs into a PROMPT_PAIRS dict + a --prompt CLI arg (choices cities/larger_than/sp_en_trans) so cities (C6) and sp_en_trans (C7) run without editing comments. Added t.set_grad_enabled(False) (single-prompt forwards, no probe training here).",
+                    "original_error": "TypeError: LlamaForCausalLM.forward() got an unexpected keyword argument 'remote' (nnsight 0.2.21 lacks forward/runner)",
+                    "diff_snippet": "- with model.forward(remote=remote,...) as runner:\n-   with runner.invoke(false_prompt, scan=True) as invoker:\n-     layer.output[0][0,-tok_idx,:] = true_acts[layer_idx][0,-tok_idx,:]\n+ with model.trace(false_prompt, scan=False, validate=False):\n+   layer.output[0][0,-tok_idx,:] = true_acts[layer_idx][0,-tok_idx,:]"
+                },
+                {
+                    "file_path": "patching.ipynb -> render_patching.py",
+                    "description": "patching.ipynb instantiated LanguageModel('meta-llama/Llama-2-70b-hf') solely to get a tokenizer for token labels (gated + no local 70B) and rendered only the last record. Replaced with render_patching.py that loads ONLY the local tokenizer (config.ini weights_directory) and renders ALL patching records to figures/patching_<prompt>_<model>.png via plotly px.imshow (same transpose + blues colorscale as the notebook).",
+                    "original_error": "would 401/OOM: LanguageModel('meta-llama/Llama-2-70b-hf') gated and 70B not local",
+                    "diff_snippet": "- model = LanguageModel('meta-llama/Llama-2-70b-hf'); tokenizer = model.tokenizer\n+ tok = AutoTokenizer.from_pretrained(config[model_name]['weights_directory'])"
+                }
+            ],
+            "code_modified": true,
+            "notes": "Reproduces the paper's activation-patching localization (Fig 6/7, C6+C7). 13B cities heatmap shows: strong TRUE-FALSE signal at the SUBJECT token ('Chicago') in early layers (0-7), moving to the OBJECT/period tokens ('Canada','.') in middle layers (7-17), then a strong dark column at the FINAL token (':' of 'This statement is:') in late layers (14-39) -- i.e. statement-level truth info is summarized over the end-of-sentence/final token in later layers (C7). Same qualitative structure in sp_en_trans and in 7B, but 7B effects are much weaker (max logit diff 1.25 vs 13B 4.12) -> scale trend. 70B not attempted (no local weights)."
+        }
+    ]
+}

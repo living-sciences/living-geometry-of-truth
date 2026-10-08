@@ -1,0 +1,69 @@
+Loading model llama-2-13b...
+queries: false=176 true=174  hidden_states=14 positions
+
+=== cell cities/LRProbe ===
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:06,  1.23s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:05,  1.27s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:03<00:03,  1.24s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:04<00:02,  1.20s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:06<00:01,  1.18s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.06s/it]
+You're using a LlamaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+  PD- -0.9141  PD-* -0.7383  PD+ 0.7930  PD+* 0.5430
+  NIE false->true 0.1030   NIE true->false 0.1465
+
+=== cell cities/MMProbe ===
+  PD- -0.9141  PD-* 0.4648  PD+ 0.7930  PD+* -0.7500
+  NIE false->true 0.8078   NIE true->false 0.9039
+
+=== cell cities+neg_cities/LRProbe ===
+  PD- -0.9141  PD-* -0.3809  PD+ 0.7930  PD+* 0.0449
+  NIE false->true 0.3124   NIE true->false 0.4382
+
+=== cell cities+neg_cities/MMProbe ===
+  PD- -0.9141  PD-* 0.5859  PD+ 0.7930  PD+* -0.8828
+  NIE false->true 0.8787   NIE true->false 0.9817
+
+=== cell cities+neg_cities/CCSProbe ===
+  PD- -0.9141  PD-* -0.3281  PD+ 0.7930  PD+* -0.3535
+  NIE false->true 0.3432   NIE true->false 0.6716
+
+=== cell larger_than/LRProbe ===
+  PD- -0.9141  PD-* -0.4121  PD+ 0.7930  PD+* 0.4512
+  NIE false->true 0.2941   NIE true->false 0.2002
+
+=== cell larger_than/MMProbe ===
+  PD- -0.9141  PD-* 0.3262  PD+ 0.7930  PD+* -0.6602
+  NIE false->true 0.7265   NIE true->false 0.8513
+
+=== cell larger_than+smaller_than/LRProbe ===
+  PD- -0.9141  PD-* -0.8125  PD+ 0.7930  PD+* 0.6016
+  NIE false->true 0.0595   NIE true->false 0.1121
+
+=== cell larger_than+smaller_than/MMProbe ===
+  PD- -0.9141  PD-* -0.4648  PD+ 0.7930  PD+* -0.1309
+  NIE false->true 0.2632   NIE true->false 0.5412
+
+=== cell larger_than+smaller_than/CCSProbe ===
+  PD- -0.9141  PD-* -0.8164  PD+ 0.7930  PD+* 0.6055
+  NIE false->true 0.0572   NIE true->false 0.1098
+
+=== cell likely/LRProbe ===
+  PD- -0.9141  PD-* -0.8555  PD+ 0.7930  PD+* 0.7109
+  NIE false->true 0.0343   NIE true->false 0.0481
+
+=== cell likely/MMProbe ===
+  PD- -0.9141  PD-* 0.3223  PD+ 0.7930  PD+* -0.0874
+  NIE false->true 0.7243   NIE true->false 0.5157
+
+wrote experimental_outputs/nie_table_13b.json
+
+=== Table 2 (13B) NIE summary ===
+cell                              NIE f->t  NIE t->f
+cities/LRProbe                       0.103     0.146
+cities/MMProbe                       0.808     0.904
+cities+neg_cities/LRProbe            0.312     0.438
+cities+neg_cities/MMProbe            0.879     0.982
+cities+neg_cities/CCSProbe           0.343     0.672
+larger_than/LRProbe                  0.294     0.200
+larger_than/MMProbe                  0.727     0.851
+larger_than+smaller_than/LRProbe     0.059     0.112
+larger_than+smaller_than/MMProbe     0.263     0.541
+larger_than+smaller_than/CCSProbe     0.057     0.110
+likely/LRProbe                       0.034     0.048
+likely/MMProbe                       0.724     0.516

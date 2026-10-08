@@ -1,0 +1,62 @@
+{
+  "schema": "sai.followup.result_card/v1",
+  "headline": "Across Llama/Qwen/OLMo (2023-2025), truth is linearly represented at ~0.4 relative depth in Llama but deeper (~0.5-0.63) in Qwen/OLMo; MM cross-dataset generalization is ~0.80 at 7-8B and rises ~+0.43 per 10x params (Llama-2 7B->13B 0.52->0.77), saturating near ~0.9 by ~8-13B; and the negation gap collapses from 0.52 (Llama-2-7B) to 0.05 (Qwen3-8B-Base).",
+  "status": "completed",
+  "metrics": [
+    {"label": "C19 gen. slope per 10x params (MM)", "value": "+0.43 (r=0.40)", "baseline": "Llama-2 7B->13B: 0.519 -> 0.769",
+     "baseline_label": "001 generalization_followup.json (at_best_layer C19 MM)",
+     "note": "weak across families (narrow 6.7-13.2B range, generation-confounded); within-family Llama-2 is the clean signal"},
+    {"label": "Saturating-fit asymptote (C19 MM)", "value": "0.915 (~81% reached by 8B)", "baseline": "Llama-2-13B anchor 0.769",
+     "baseline_label": "001 generalization_followup.json (reproduces replication generalization_results.json)",
+     "note": "generalization has largely saturated by ~8B in this window (R2=0.27)"},
+    {"label": "Best-layer relative depth (base)", "value": "0.49 +/- 0.12; Llama 0.39 / Qwen 0.57 / OLMo 0.63", "baseline": "paper Llama-2 ~0.35-0.41",
+     "baseline_label": "001 best_val_layer + on-disk config num_hidden_layers",
+     "note": "the ~0.4-depth constant is Llama-specific; Qwen/OLMo read truth out deeper"},
+    {"label": "Negation gap (affirmative MM dir on negated set)", "value": "0.52 -> 0.05 (Llama-2-7B -> Qwen3-8B-Base)", "baseline": "Llama-2-7B 0.519",
+     "baseline_label": "001 generalization_followup.json (at_best_layer matrix MM)",
+     "note": "shrinks ~10x with generation; polarity-agnostic medley recovers negated truth at ~0.99 everywhere (2-D subspace, 2407.12831)"},
+    {"label": "Instruct preserves truth dir (Qwen2.5-7B)", "value": "cos(MM_base,MM_instruct) 0.84-0.90; C3 +0.02, C19 +0.058", "baseline": "base C3 0.960 / C19 0.793",
+     "baseline_label": "001 generalization_followup.json; cosine computed from 001/acts",
+     "note": "tuning preserves and slightly strengthens the direction; does not distort it"}
+  ],
+  "tables": [
+    {"title": "Scale, depth, and negation by model (all from 001 artifacts)",
+     "columns": ["Model (era)", "Params B", "C19 OOD (MM)", "Best rel-depth", "Negation gap (MM)"],
+     "rows": [
+       ["Llama-2-7B (2023)", "6.74", "0.519", "0.41", "+0.52"],
+       ["Llama-2-13B (2023, anchor)", "13.18", "0.769", "0.35", "+0.27"],
+       ["Llama-3.1-8B (2024)", "8.03", "0.808", "0.41", "+0.29"],
+       ["Qwen2.5-7B (2024)", "7.62", "0.792", "0.64", "+0.21"],
+       ["Qwen3-8B-Base (2025)", "8.19", "0.812", "0.50", "+0.05"],
+       ["OLMo-3-7B (2025)", "7.30", "0.735", "0.63", "+0.16"],
+       ["Qwen2.5-7B-Instruct", "7.62", "0.850", "0.64", "+0.09"]
+     ],
+     "highlight_row": 1},
+    {"title": "Generation means (base, ~7-8B) - 2025 does not beat 2024 at equal scale",
+     "columns": ["Generation", "Mean C19 OOD (MM)", "Models"],
+     "rows": [
+       ["2023", "0.644", "Llama-2 7B/13B"],
+       ["2024", "0.800", "Llama-3.1-8B, Qwen2.5-7B"],
+       ["2025", "0.773", "Qwen3-8B-Base, OLMo-3-7B"]
+     ]}
+  ],
+  "figures": [
+    {"file": "results/accuracy_vs_scale.png",
+     "caption": "Mean OOD generalization (MM off-diagonal, C19) vs parameters, colored by family, with log-linear (+0.43/10x, r=0.40) and saturating-exponential (asymptote 0.915, R2=0.27) fits. The within-family Llama-2 7B->13B arrow (0.52->0.77) is the clean scale signal; the 7-8B moderns plateau near 0.8, above the 2023 13B anchor (dotted, 0.769). Instruct shown as an open diamond (tuning axis, excluded from the fit).",
+     "alt": "Log-x scatter of OOD accuracy vs params; Llama-2-7B low at 0.52, all 7-8B moderns cluster 0.73-0.81, 13B anchor 0.77; two fitted curves flatten past 8B."},
+    {"file": "results/best_relative_depth.png",
+     "caption": "Best-validation probe layer as a fraction of model depth, per model and family. Llama sits in the paper's 0.35-0.41 band (blue shading); Qwen (~0.57) and OLMo (~0.63) read truth out deeper. Dashed line = the fixed 0.4-depth cut used in 001. Base cross-family mean 0.49+/-0.12.",
+     "alt": "Bar chart of relative depth; three Llama bars near 0.4, Qwen and OLMo bars near 0.5-0.64, instruct bar hatched at 0.64."},
+    {"file": "results/negation_gap_vs_generation.png",
+     "caption": "Negation gap (MM cities->cities minus cities->neg_cities) vs release generation. An affirmative-only truth direction fully flips under negation in Llama-2-7B (gap 0.52) but barely moves in Qwen3-8B-Base (0.05): negation geometry aligns in newer models, consistent with the 2-D-subspace 'Truth is Universal' hypothesis (arXiv 2407.12831).",
+     "alt": "Scatter of negation gap vs generation year; points fall from ~0.52 in 2023 down toward ~0.05-0.16 in 2025, colored by family."}
+  ],
+  "notes": [
+    "Analysis-only, ~0 GPU-h: all numbers read from 001-living-update artifacts (generalization_followup.json, flip_rates.json) or on-disk model configs; the one computed quantity (base-vs-instruct MM cosine) uses 001's stored activations on CPU via the replicated probes.MMProbe. 001 reproduced the replication's Llama-2 anchors exactly.",
+    "Cross-family accuracy-vs-scale fit is under-powered (params 6.7-13.2B, confounded with generation; r=0.40); the reliable scale evidence is the within-family Llama-2 7B->13B contrast.",
+    "Best-layer relative depth is resolved only to ~+/-0.12 (coarse ~6-point sweep grid); the Llama-shallow / Qwen-OLMo-deep split is robust, exact per-model depths are not.",
+    "OLMo-3-7B's known massive-activation outlier depresses its raw MM cities numbers; its LR oracle (~0.96) confirms linear separability is intact.",
+    "No new GPU jobs, no re-extraction; no run-dir file outside followup/002-theory-update/ was modified."
+  ],
+  "report_file": "report.md"
+}

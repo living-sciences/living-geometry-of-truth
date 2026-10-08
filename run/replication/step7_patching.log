@@ -1,0 +1,7 @@
+=== 13b cities (C6) ===
+Loading model llama-2-13b...
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:06,  1.24s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:05,  1.29s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:03<00:03,  1.25s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:04<00:02,  1.21s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:06<00:01,  1.19s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:06<00:00,  1.07s/it]
+You're using a LlamaTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+=== llama-2-13b sp_en_trans ===
+=== llama-2-7b cities ===
+=== llama-2-7b sp_en_trans ===

@@ -1,0 +1,109 @@
+{
+    "environment": {
+        "python_version": "3.11.15",
+        "gpu_available": true,
+        "gpu_model": "NVIDIA A40 (46068 MiB); 2 present, CUDA_VISIBLE_DEVICES=0",
+        "key_packages": {
+            "torch": "2.2.2+cu121",
+            "transformers": "4.38.2",
+            "tokenizers": "0.15.2",
+            "accelerate": "0.27.2",
+            "nnsight": "0.2.21",
+            "numpy": "1.26.4",
+            "plotly": "5.24.1",
+            "kaleido": "0.2.1",
+            "pandas": "2.x",
+            "scikit-learn": "installed"
+        },
+        "notes": "Default uv venv chose Python 3.14 + transformers 5.16.1 (incompatible with the repo's nnsight 0.2.x tracing API); recreated with Python 3.11 and pinned torch==2.2.2+cu121, transformers==4.38.2, tokenizers==0.15.2, accelerate==0.27.2, numpy<2, nnsight==0.2.21. plotly/kaleido downgraded to 5.24.1/0.2.1 for headless PNG export (kaleido 1.x needs system Chrome). Models loaded from local HF-converted Llama-2 weights (config.ini repointed by directive)."
+    },
+    "paper": "The Geometry of Truth: Emergent Linear Structure in LLM Representations of True/False Datasets (Marks & Tegmark, arXiv:2310.06824)",
+    "models_reproduced": [
+        "llama-2-13b",
+        "llama-2-7b"
+    ],
+    "models_omitted": [
+        "llama-2-70b (no local weights, gated HF; scale-comparison 70B rows not attempted)"
+    ],
+    "recurring_fix": "The repo's scripts (few_shot.py, interventions.py, patching.py) target a pre-0.2 nnsight runner API (`with model.forward(remote=...) as runner: runner.invoke(...)`, `runner.output`). nnsight 0.2.21 has no such wrapper (model.forward -> LlamaForCausalLM.forward, TypeError on `remote`). All three were ported to the 0.2.21 `model.trace()` API used by generate_acts.py, preserving methodology exactly.",
+    "results_summary": {
+        "step2_activations": "All 40 (13B) / 32 (7B) layers extracted for all 12 datasets; counts verified against pandas row counts (e.g. counterfact 31964, likely 9674 -- CSV line count inflated by embedded newlines).",
+        "step3_pca": "cities+neg_cities show clean true/false linear separation in top-2 PCs (Fig 1/2); negation pairs show 4-color truth-axis alignment (Fig 3); layer-sweep + rotation panels produced.",
+        "step4_generalization_13b_LR": {
+            "cities_OODavg": 0.738,
+            "cities+neg_cities_OODavg": 0.831,
+            "larger_than_OODavg": 0.742,
+            "larger_than+smaller_than_OODavg": 0.809,
+            "oracle_LR": 0.961,
+            "signature": "train larger_than alone -> 1% on smaller_than; train cities alone -> 28% on neg_cities; paired training fixes both (Fig 5)."
+        },
+        "step4_generalization_7b_LR": {
+            "cities_OODavg": 0.61,
+            "cities+neg_cities_OODavg": 0.68,
+            "larger_than_OODavg": 0.506,
+            "larger_than+smaller_than_OODavg": 0.708,
+            "oracle_LR": 0.944,
+            "scale_trend": "every OOD average lower at 7B than 13B."
+        },
+        "step5_fewshot_13b": {
+            "cities": 0.992,
+            "neg_cities": 0.309,
+            "larger_than": 0.896,
+            "smaller_than": 0.482,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.928,
+            "counterfact": 0.821,
+            "note": "few-shot fails on negations/opposites where trained probes generalize."
+        },
+        "step5_fewshot_7b": {
+            "cities": 0.965,
+            "neg_cities": 0.215,
+            "smaller_than": 0.499,
+            "sp_en_trans": 0.971,
+            "counterfact": 0.728
+        },
+        "step6_intervention_NIE_13b": {
+            "baselines": {
+                "PD_minus_false": -0.914,
+                "PD_plus_true": 0.793
+            },
+            "MM_probe_NIE_false_to_true": {
+                "cities": 0.808,
+                "cities+neg_cities": 0.879,
+                "larger_than": 0.727,
+                "larger_than+smaller_than": 0.263,
+                "likely": 0.724
+            },
+            "LR_probe_NIE_false_to_true": {
+                "cities": 0.103,
+                "cities+neg_cities": 0.312,
+                "larger_than": 0.294,
+                "larger_than+smaller_than": 0.059,
+                "likely": 0.034
+            },
+            "finding": "mass-mean truth direction is strongly causal (adding it flips model's truth judgment); MM >> LR causal faithfulness (Table 2)."
+        },
+        "step7_patching": "Truth info localized at subject token (early layers), object/period tokens (mid layers), and summarized over the final token in late layers (Fig 6/7). 13B effects much stronger than 7B (max logit diff 4.12 vs 1.25)."
+    },
+    "figures_dir": "run/replication/codebase/figures/",
+    "key_output_json": [
+        "experimental_outputs/generalization_results.json (10 objects)",
+        "experimental_outputs/few_shot_results.json (22 objects)",
+        "experimental_outputs/label_change_intervention_results.json (48 objects) + nie_table_13b.json (12 rows)",
+        "experimental_outputs/patching_results.json (4 objects)"
+    ],
+    "reverification_2026-09-09": {
+        "verified_by": "replication agent re-invocation",
+        "environment_now": "NVIDIA H200 NVL x4 (prior run recorded on A40); same venv torch 2.2.2+cu121, cuda available, 4 devices",
+        "checks_passed": [
+            "venv imports (torch/transformers 4.38.2/nnsight 0.2.21/sklearn/plotly) OK on H200",
+            "generalization_results.json: 10 objects (LR/MM/CCS x oracle x 2 models), real floats; 13B LR larger_than->smaller_than=0.015, larger_than+smaller_than->100% both (paper Fig5 signature)",
+            "few_shot_results.json: 22 objects (11 datasets x 2 models); negation failure reproduced (13B neg_cities 0.309, smaller_than 0.482)",
+            "nie_table_13b.json: 12 cells; MM strongly causal (cities MM NIE f->t 0.808) >> LR (0.103) (Table 2 pattern)",
+            "patching_results.json: 4 objects, shapes (9-10 x 40/32); 13B effect stronger than 7B (4.12 vs 1.25)",
+            "acts load: 13B [25,5120], 7B [25,4096] correct hidden dims",
+            "15 figures present, all non-trivial (100KB-900KB); pca_cities_neg_cities + 13b generalization heatmap visually confirmed"
+        ],
+        "conclusion": "All 7 plan steps have genuine, full-scale outputs matching the paper's qualitative findings; no step required re-running. Re-running the GPU-heavy extraction/probing would reproduce identical artifacts, so not repeated."
+    }
+}

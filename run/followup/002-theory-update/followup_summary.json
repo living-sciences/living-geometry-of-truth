@@ -1,0 +1,42 @@
+{
+  "instruction_summary": "Analysis-only follow-up: from 001-living-update's artifacts, characterize how the Geometry-of-Truth linear structure (probe accuracy, cross-dataset generalization, best-layer relative depth) varies with scale, family, generation, and base->instruct tuning; fit a simple scale relation and restate the paper's claim in updated words.",
+  "completed": true,
+  "steps": [
+    {"description": "Read 001 artifacts (generalization_followup.json, flip_rates.json) and on-disk model configs (num_hidden_layers; safetensors total_size/2 for params). Confirmed baselines: Llama-2-13B C3 MM 0.9746, 7B<13B C19 gap (0.519 vs 0.769).", "command": "python3 inspect of 001/results/*.json and model config.json/safetensors.index.json", "exit_code": 0, "outputs": ["workspace notes"]},
+    {"description": "Built a fresh CPU venv (numpy/scipy/matplotlib/pandas/torch) in the 002 workspace (the 001 venv lacks scipy and is read-only history).", "command": "uv venv .venv && uv pip install numpy scipy matplotlib pandas 'torch==2.*'", "exit_code": 0, "outputs": ["workspace/.venv"]},
+    {"description": "Ran all six analyses: (1) C19/C3 vs log10(params) log-linear + saturating-exp fits; (2) best-val layer relative depth per model/family; (3) MM negation gaps from the stored generalization matrices; (4) generation/family group means; (5) base-vs-instruct accuracy deltas + cosine similarity of MM directions computed on CPU from 001 activations (reusing probes.MMProbe verbatim); (6) synthesized fitted relation.", "command": "python analyze_theory.py", "exit_code": 0, "outputs": ["results/theory_update.json"]},
+    {"description": "Built the three required figures (accuracy-vs-scale with fits; best relative depth per model/family; negation-gap-vs-generation).", "command": "python make_figs.py", "exit_code": 0, "outputs": ["results/accuracy_vs_scale.png", "results/best_relative_depth.png", "results/negation_gap_vs_generation.png"]}
+  ],
+  "key_results": {
+    "C19_vs_scale_loglinear_slope_per_10x_params": 0.428,
+    "C19_vs_scale_corr_r": 0.396,
+    "saturating_exp_fit": {"form": "a - b*exp(-c*log10P)", "a_asymptote": 0.915, "R2": 0.268, "pred_at_8B": 0.738, "frac_of_asymptote_by_8B": 0.807},
+    "within_family_Llama2_C19_7B_to_13B": {"7B": 0.519, "13B": 0.769, "delta": 0.250},
+    "best_relative_depth_base_mean_sd": {"mean": 0.488, "sd": 0.123},
+    "best_relative_depth_per_family": {"Llama": 0.388, "Qwen": 0.571, "OLMo": 0.625},
+    "negation_gap_MM_cities": {"llama-2-7b": 0.519, "llama-2-13b": 0.271, "llama-3.1-8b": 0.294, "qwen2.5-7b": 0.213, "qwen3-8b-base": 0.050, "olmo-3-7b": 0.162, "qwen2.5-7b-instruct": 0.092},
+    "polarity_medley_recovers_neg_cities_MM": {"all_except_olmo": "~0.99", "olmo-3-7b": 0.760},
+    "generation_mean_C19_MM": {"2023": 0.644, "2024": 0.800, "2025": 0.773},
+    "tuning_qwen2.5_base_to_instruct": {"C3_delta": 0.020, "C19_delta": 0.058, "flip_delta": 0.0, "cos_MM_bestlayer_L18": {"cities": 0.843, "larger_than": 0.866, "sp_en_trans": 0.897}, "cos_MM_0.4depth_L11": {"cities": 0.938, "larger_than": 0.919, "sp_en_trans": 0.949}},
+    "updated_one_line_claim": "Truth is linearly represented at ~0.4 relative depth in Llama (0.39+/-0.02) but deeper in Qwen/OLMo (~0.5-0.63; cross-family mean 0.49+/-0.12); MM cross-dataset generalization is ~0.80 at 7-8B and rises ~+0.43 per 10x params (Llama-2 7B->13B 0.52->0.77), saturating near ~0.9 by ~8-13B; negation geometry is far more aligned than in Llama-2 (single-direction negation gap 0.52 -> 0.05 from Llama-2-7B to Qwen3-8B-Base), consistent with the 2-D-subspace hypothesis (2407.12831)."
+  },
+  "comparison_to_original": [
+    {"quantity": "C19 (mean off-diag MM) scale gap, Llama-2 7B vs 13B", "original": "0.519 (7B) vs 0.769 (13B)", "followup": "confirmed; same-generation 8B (Llama-3.1) already reaches 0.808, exceeding the 13B anchor", "source_file": "001-living-update/results/generalization_followup.json (at_best_layer.C19_mean_offdiag.MM; anchors reproduce replication/codebase/experimental_outputs/generalization_results.json exactly)", "note": "Paper's C19 'bigger generalizes better' holds within family, but marginal value of scale past ~8B is small; fit saturates near 0.9."},
+    {"quantity": "Best-layer relative depth of the truth direction", "original": "Llama-2 ~0.35-0.41 (paper / 001: 7B 0.406, 13B 0.350)", "followup": "Llama family constant at 0.388; Qwen 0.571, OLMo 0.625 (base mean 0.488+/-0.123)", "source_file": "001-living-update/results/generalization_followup.json (best_val_layer) + on-disk config.json num_hidden_layers", "note": "The ~0.4-depth constant is Llama-specific, not universal; Qwen/OLMo read truth out deeper."},
+    {"quantity": "Negation gap (affirmative MM direction on negated set)", "original": "Llama-2-7B cities->neg_cities 0.475 (gap 0.519); C3 probe on neg_sp_en_trans 0.167", "followup": "gap falls to 0.050 in Qwen3-8B-Base (cities->neg_cities 0.940); polarity-agnostic medley recovers negated truth at ~0.99 in every model", "source_file": "001-living-update/results/generalization_followup.json (at_best_layer.matrix.MM)", "note": "Directly supports the 'Truth is Universal' 2-D-subspace hypothesis (2407.12831): newer models' 1-D affirmative direction captures more of the polarity-invariant component."},
+    {"quantity": "Base -> Instruct effect on truth direction (Qwen2.5-7B)", "original": "001: C3 MM base 0.9605 vs instruct 0.9802; C19 0.7925 vs 0.8500", "followup": "cosine(MM_base, MM_instruct) = 0.84-0.90 at best layer, 0.92-0.95 at 0.4-depth; accuracy +0.02 C3 / +0.058 C19; flip-rate delta 0", "source_file": "001-living-update/results/generalization_followup.json + flip_rates.json; cosine computed from 001/acts via probes.MMProbe", "note": "Instruction tuning preserves (high cosine) and slightly strengthens the truth direction; does not distort it."}
+  ],
+  "artifacts": [
+    "results/theory_update.json",
+    "results/accuracy_vs_scale.png",
+    "results/best_relative_depth.png",
+    "results/negation_gap_vs_generation.png"
+  ],
+  "deviations": [
+    "Cross-family accuracy-vs-scale fit is under-powered (params 6.7-13.2B, confounded with generation; r=0.40, R2=0.27); the reliable scale signal is the within-family Llama-2 7B->13B contrast, reported as such.",
+    "Best-layer relative depth resolved only to ~+/-0.12 (coarse ~6-point sweep grid from 001); the Llama-shallow / Qwen-OLMo-deep split is robust, exact per-model depths are not.",
+    "Flip-rate tuning delta is 0/0 because 001's natural-magnitude single-direction flip-rate saturates for Qwen (readout p_diff ~ +/-0.99); inherited, not re-measured, and not evidence about tuning.",
+    "OLMo-3-7B's known massive-activation outlier depresses its raw MM cities numbers (noted at each appearance); its LR oracle ~0.96 confirms linear separability is intact.",
+    "No new GPU jobs or re-extraction; only CPU reads of 001 activations for one cosine-similarity. No run-dir file outside followup/002-theory-update/ was modified."
+  ]
+}

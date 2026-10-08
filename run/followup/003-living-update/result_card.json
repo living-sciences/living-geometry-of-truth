@@ -1,0 +1,48 @@
+{
+  "schema": "sai.followup.result_card/v1",
+  "headline": "The Geometry of Truth's linear truth-direction finding still holds on the newest 2026 Qwen (Qwen3.5-9B-Base: cross-dataset MM generalization = 1.00 vs 0.9746 for the 2023 Llama-2-13B anchor), but Gemma-4-12B is a partial exception — truth is separable within each dataset yet fails to generalize across datasets at the paper's canonical layer.",
+  "status": "completed",
+  "metrics": [
+    {"label": "C3 cross-dataset gen. (MM, 0.4-depth layer) — Qwen3.5-9B-Base", "value": "1.000", "baseline": "0.9746",
+     "baseline_label": "Llama-2-13B replication (generalization_results.json, L14 oracle:False)", "note": "larger+smaller → sp_en_trans; newest Qwen matches/exceeds the 2023 anchor"},
+    {"label": "C3 cross-dataset gen. (MM, 0.4-depth layer) — Gemma-4-12B", "value": "0.393", "baseline": "0.9746",
+     "baseline_label": "Llama-2-13B replication (generalization_results.json)", "note": "cross-dataset transfer FAILS at the canonical layer (0.75 even at its best deep layer)"},
+    {"label": "Same-dataset (oracle) MM accuracy — Gemma-4-12B", "value": "0.954", "baseline": "0.988",
+     "baseline_label": "Llama-2-13B replication (001 common-grid recompute)", "note": "truth IS linearly separable within-dataset in gemma; only the cross-dataset direction is architecture-specific"},
+    {"label": "C19 mean off-diagonal generalization (MM, best-val) — Qwen3.5-9B-Base", "value": "0.883", "baseline": "0.769",
+     "baseline_label": "Llama-2-13B (001 living-update, common 8-grid)", "note": "highest in the entire 2023–2026 ladder"},
+    {"label": "Causal MM flip-rate (TRUE→FALSE, 2× magnitude) — Qwen3.5-9B-Base", "value": "0.994", "baseline": "0.72 / 0.54 NIE",
+     "baseline_label": "Llama-2-13B nie_table_13b.json (analog)", "note": "same MM direction is causally load-bearing once the saturated-readout under-magnitude is corrected"}
+  ],
+  "tables": [
+    {"title": "Truth-direction claims: 2023 anchor → 2026 models (probes on the common 8-dataset grid)",
+     "columns": ["Metric", "Llama-2-13B (disk anchor)", "Qwen3.5-9B-Base (2026)", "Gemma-4-12B (2026)"],
+     "rows": [
+       ["C3 MM @ paper 0.4-depth layer", "0.9746", "1.0000", "0.3927"],
+       ["C3 MM @ best-val layer", "0.9746", "0.9944", "0.7514"],
+       ["C3 LR @ best-val layer", "0.9718", "1.0000", "0.5565"],
+       ["C3 CCS @ best-val layer", "0.9774", "1.0000", "0.5819"],
+       ["C19 mean off-diag (MM), best-val", "0.769", "0.8832", "0.8362"],
+       ["Oracle same-dataset MM", "0.988", "0.9775", "0.9544"],
+       ["Oracle same-dataset LR", "0.994", "0.9881", "0.9812"]],
+     "highlight_row": 0}
+  ],
+  "figures": [
+    {"file": "results/truth_direction_over_time.png",
+     "caption": "C3 cross-dataset generalization (larger+smaller→sp_en_trans) vs model release, 2023→2026. Dashed line = replicated Llama-2-13B MM anchor (0.9746). 2026 models ringed; x = MM at the paper's 0.4-depth layer. Qwen3.5-9B-Base sits above the anchor; Gemma-4-12B drops sharply.",
+     "alt": "Scatter of generalization accuracy against release year; Qwen3.5 near 1.0 at top right, Gemma-4-12B far below at ~0.4-0.75"},
+    {"file": "results/pca_cities_grid.png",
+     "caption": "Top-2 PCA of cities activations colored by truth label (claim C1). Clean true/false separation persists in Qwen3.5-9B-Base (orange title); Gemma-4-12B also separates at its deep best layer.",
+     "alt": "Six PCA scatter panels; true (blue) and false (orange) points separate along PC1 in most models"},
+    {"file": "results/probe_acc_vs_scale.png",
+     "caption": "Mean OOD generalization accuracy (MM off-diagonal, C19) vs parameters. The 2026 Qwen3.5-9B-Base (star) has the highest off-diagonal in the ladder.",
+     "alt": "Log-x scatter of off-diagonal generalization vs model size, colored by family, 2026 models marked with stars"}
+  ],
+  "notes": [
+    "Every 2026 number is from this session's execution; all Llama-2/2023–2025 baselines are read from disk (replication generalization_results.json and the 001 living-update results).",
+    "nnsight cannot wrap the qwen3_5 / gemma4_unified multimodal architectures; activations were extracted with plain transformers output_hidden_states (hidden_states[L+1] == a forward hook on decoder layer L, verified to 0.0), and the causal analog uses transformers forward hooks. A fresh transformers 5.17.0 venv was needed (the 001 venv's 4.57.1 lacks these model types).",
+    "Instruction said the decoder is m.language_model; in transformers 5.17.0 it is m.model.language_model (both 2026 models).",
+    "Causal flip-rate is a cheap single-MM-direction analog of C2/C17 (not the full 12-cell NIE table) and was run for Qwen3.5-9B-Base only; realized new activations 0.68 GB (cap 20 GB)."
+  ],
+  "report_file": "report.md"
+}

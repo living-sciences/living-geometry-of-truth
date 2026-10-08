@@ -1,0 +1,152 @@
+[
+  {
+    "train_datasets": [
+      "cities"
+    ],
+    "probe": "LRProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.73828125,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.54296875,
+    "NIE_false_to_true": 0.10297482837528604,
+    "NIE_true_to_false": 0.14645308924485126
+  },
+  {
+    "train_datasets": [
+      "cities"
+    ],
+    "probe": "MMProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": 0.46484375,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.75,
+    "NIE_false_to_true": 0.8077803203661327,
+    "NIE_true_to_false": 0.9038901601830663
+  },
+  {
+    "train_datasets": [
+      "cities",
+      "neg_cities"
+    ],
+    "probe": "LRProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.380859375,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.044921875,
+    "NIE_false_to_true": 0.3123569794050343,
+    "NIE_true_to_false": 0.43821510297482835
+  },
+  {
+    "train_datasets": [
+      "cities",
+      "neg_cities"
+    ],
+    "probe": "MMProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": 0.5859375,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.8828125,
+    "NIE_false_to_true": 0.8787185354691075,
+    "NIE_true_to_false": 0.9816933638443935
+  },
+  {
+    "train_datasets": [
+      "cities",
+      "neg_cities"
+    ],
+    "probe": "CCSProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.328125,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.353515625,
+    "NIE_false_to_true": 0.34324942791762014,
+    "NIE_true_to_false": 0.6716247139588101
+  },
+  {
+    "train_datasets": [
+      "larger_than"
+    ],
+    "probe": "LRProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.412109375,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.451171875,
+    "NIE_false_to_true": 0.2940503432494279,
+    "NIE_true_to_false": 0.20022883295194507
+  },
+  {
+    "train_datasets": [
+      "larger_than"
+    ],
+    "probe": "MMProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": 0.326171875,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.66015625,
+    "NIE_false_to_true": 0.7265446224256293,
+    "NIE_true_to_false": 0.851258581235698
+  },
+  {
+    "train_datasets": [
+      "larger_than",
+      "smaller_than"
+    ],
+    "probe": "LRProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.8125,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.6015625,
+    "NIE_false_to_true": 0.059496567505720827,
+    "NIE_true_to_false": 0.11212814645308924
+  },
+  {
+    "train_datasets": [
+      "larger_than",
+      "smaller_than"
+    ],
+    "probe": "MMProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.46484375,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.130859375,
+    "NIE_false_to_true": 0.2631578947368421,
+    "NIE_true_to_false": 0.5411899313501144
+  },
+  {
+    "train_datasets": [
+      "larger_than",
+      "smaller_than"
+    ],
+    "probe": "CCSProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.81640625,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.60546875,
+    "NIE_false_to_true": 0.057208237986270026,
+    "NIE_true_to_false": 0.10983981693363844
+  },
+  {
+    "train_datasets": [
+      "likely"
+    ],
+    "probe": "LRProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": -0.85546875,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": 0.7109375,
+    "NIE_false_to_true": 0.034324942791762014,
+    "NIE_true_to_false": 0.04805491990846682
+  },
+  {
+    "train_datasets": [
+      "likely"
+    ],
+    "probe": "MMProbe",
+    "PD_minus": -0.9140625,
+    "PD_minus_star": 0.322265625,
+    "PD_plus": 0.79296875,
+    "PD_plus_star": -0.08740234375,
+    "NIE_false_to_true": 0.7242562929061785,
+    "NIE_true_to_false": 0.5157322654462243
+  }
+]

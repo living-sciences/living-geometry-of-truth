@@ -1,0 +1,57 @@
+{
+  "instruction_summary": "2026 model-refresh tick extending the prior geometry-of-truth living-update: reuse all 2023-2025 per-model results and ADD the newest 2026 models to the truth-direction ladder, extracting residual activations via transformers output_hidden_states (nnsight cannot wrap the qwen3_5 / gemma4_unified multimodal architectures), training the same mass-mean/LR/CCS probes, and re-aggregating old+new plus extending the over-time figure to 2026.",
+  "completed": true,
+  "steps": [
+    {"description": "Read the original 001 methodology, replication artifacts, and prior 001 living-update results/scripts; confirmed the C3 anchor baselines from disk (Llama-2-13B L14 oracle:False MM 0.9746, LR 0.9718, CCS 0.9774)", "command": "read 001-living-update.instruction.md + replication/codebase/experimental_outputs/generalization_results.json", "exit_code": 0, "outputs": ["baseline notes"]},
+    {"description": "Set up 003 workspace: copied 001 workspace/codebase scripts, symlinked the 5 prior new-model acts dirs into 003/acts (reuse DONE), copied the seed-0 capped datasets, staged 001 generalization_followup.json + flip_rates.json as the old-model baseline (read from disk, not recomputed)", "command": "cp -r 001/workspace/codebase; ln -s 001/acts/<m>; cp 001 results", "exit_code": 0, "outputs": ["workspace/codebase", "acts/<5 old models> (symlinks)", "results/*_001.json"]},
+    {"description": "Built a fresh uv venv (py3.11) with transformers 5.17.0 + torch 2.14.0+cu130, because the 001 venv (transformers 4.57.1) does NOT know model_type qwen3_5 / gemma4_unified", "command": "uv venv .venv && uv pip install torch==2.14.0 transformers==5.17.0 accelerate pandas numpy matplotlib", "exit_code": 0, "outputs": ["workspace/.venv", "workspace/pinned_versions_2026.txt"]},
+    {"description": "Smoke-tested Qwen3.5-9B-Base with plain transformers (AutoModelForImageTextToText): load + one forward + one activation read. Decoder is at m.model.language_model.layers (NOT m.language_model as the instruction stated); output_hidden_states[L+1][:,-1,:] matches a forward hook on layers[L] EXACTLY (max abs diff 0.0). 32 layers, hidden 4096, hidden_states len 33.", "command": "python codebase/smoke_qwen35.py", "exit_code": 0, "outputs": ["smoke pass"]},
+    {"description": "Extracted last-token bf16 residual activations for the 8 datasets at the 6 sweep layers (relative depths {0.25,0.375,0.4,0.5,0.625,0.75}) for Qwen3.5-9B-Base via output_hidden_states, left padding, N<=1000 seed-0 capped", "command": "python codebase/extract_qwen35.py --model qwen3.5-9b-base --path <snapshot> --acts_root <fu>/acts", "exit_code": 0, "outputs": ["acts/qwen3.5-9b-base/<dataset>/layer_<L>_<idx>.pt (350 MB)"]},
+    {"description": "Smoke-tested + extracted gemma-4-12B (Gemma4UnifiedForConditionalGeneration, 48 layers, hidden 3840, sweep [12,18,19,24,30,36], probe 19) with the same generic output_hidden_states backend; weights were fully present (23 GB single-file safetensors)", "command": "python codebase/extract_mm2026.py --model gemma-4-12b --path <snapshot> --acts_root <fu>/acts", "exit_code": 0, "outputs": ["acts/gemma-4-12b/<dataset>/layer_<L>_<idx>.pt (330 MB)"]},
+    {"description": "Ran probes (LR/MM/CCS medleys + oracle) verbatim from probes.py over the common 8-dataset grid at every sweep layer for BOTH 2026 models, selecting val-best layer per model; recorded C3/C19/oracle at both best-val and 0.4-depth. Old models read from the 001 result on disk and merged (not recomputed).", "command": "python codebase/analyze_qwen35.py", "exit_code": 0, "outputs": ["results/generalization_followup.json (9 models)"]},
+    {"description": "Ran the cheap causal flip-rate analog (single MM cities+neg_cities direction, add/subtract over intervene..probe layers, magnitude sweep 1x/2x/4x/8x) for Qwen3.5-9B-Base using transformers forward HOOKS (nnsight cannot wrap qwen3_5)", "command": "python codebase/flip_rate_qwen35.py --model qwen3.5-9b-base --path <snapshot>", "exit_code": 0, "outputs": ["results/flip_rates.json"]},
+    {"description": "Rebuilt the three figures extended to the 2026 point(s): over-time (C3 vs release era, both 2026 models ringed, 0.4-depth shown as x), probe-acc-vs-scale, PCA cities grid", "command": "python codebase/make_figures_003.py", "exit_code": 0, "outputs": ["results/truth_direction_over_time.png", "results/probe_acc_vs_scale.png", "results/pca_cities_grid.png"]}
+  ],
+  "key_results": {
+    "anchor_C3_from_disk_llama-2-13b_L14": {"MM": 0.9746, "LR": 0.9718, "CCS": 0.9774},
+    "qwen3.5-9b-base": {
+      "n_layers": 32, "probe_layer_0.4depth": 13, "best_val_layer": 16,
+      "C3_at_0.4depth_L13": {"MM": 1.0000, "LR": 0.9972, "CCS": 0.9972},
+      "C3_at_best_val_L16": {"MM": 0.9944, "LR": 1.0000, "CCS": 1.0000},
+      "C19_mean_offdiag_MM_best": 0.8832, "oracle_MM_best": 0.9775, "oracle_LR_best": 0.9881,
+      "flip_rate_MM_analog": {"1x_overall": 0.017, "2x_true_to_false": 0.994, "4x_true_to_false": 1.000, "false_to_true_all_scales": 0.000}
+    },
+    "gemma-4-12b": {
+      "n_layers": 48, "probe_layer_0.4depth": 19, "best_val_layer": 36,
+      "C3_at_0.4depth_L19": {"MM": 0.3927, "LR": 0.4492, "CCS": 0.3757},
+      "C3_at_best_val_L36": {"MM": 0.7514, "LR": 0.5565, "CCS": 0.5819},
+      "C19_mean_offdiag_MM_best": 0.8362, "oracle_MM_best": 0.9544, "oracle_LR_best": 0.9812,
+      "note": "within-dataset separability strong (oracle 0.95-0.98) but cross-dataset C3 generalization FAILS at the paper 0.4-depth layer and only partially recovers deep; architecture-dependent limitation"
+    },
+    "realized_new_activation_GB": 0.68,
+    "venv": {"python": "3.11.15", "torch": "2.14.0+cu130", "transformers": "5.17.0", "numpy": "2.4.6", "pandas": "3.0.5", "matplotlib": "3.11.1"}
+  },
+  "comparison_to_original": [
+    {"quantity": "C3 headline cross-dataset generalization (larger+smaller -> sp_en_trans), MM probe, at paper 0.4-depth layer", "original": "0.9746 (Llama-2-13B)", "followup": "Qwen3.5-9B-Base 1.0000 (L13); gemma-4-12B 0.3927 (L19)", "source_file": "replication/codebase/experimental_outputs/generalization_results.json (llama-2-13b, layer 14, oracle:False)", "note": "Newest Qwen (Mar 2026) reproduces the paper's headline finding perfectly and beyond; gemma-4-12B does NOT generalize cross-dataset at the canonical layer despite strong within-dataset separability."},
+    {"quantity": "C3 MM at each model's validation-best layer", "original": "0.9746 (Llama-2-13B)", "followup": "Qwen3.5-9B-Base 0.9944 (L16); gemma-4-12B 0.7514 (L36)", "source_file": "replication/codebase/experimental_outputs/generalization_results.json", "note": "Qwen3.5 matches the anchor at best-val too; gemma recovers only partially even at its best layer."},
+    {"quantity": "C3 LR / CCS at best-val layer", "original": "LR 0.9718 / CCS 0.9774 (Llama-2-13B)", "followup": "Qwen3.5 LR 1.0000 / CCS 1.0000; gemma-4-12B LR 0.5565 / CCS 0.5819", "source_file": "replication/codebase/experimental_outputs/generalization_results.json", "note": "LR/CCS confirm the split: perfect on Qwen3.5, near-chance cross-dataset on gemma-4."},
+    {"quantity": "C19 mean off-diagonal generalization (MM)", "original": "0.7690 common 8-grid recompute / 0.7589 full 11-grid (Llama-2-13B, prior living-update)", "followup": "Qwen3.5-9B-Base 0.8832 (highest in the whole ladder); gemma-4-12B 0.8362 at deep L36 but 0.4822 at the 0.4-depth L19", "source_file": "run/followup/001-living-update/results/generalization_followup.json", "note": "Qwen3.5 sets the ladder record; gemma's off-diagonal is only high at deep layers."},
+    {"quantity": "Same-dataset (oracle) probe accuracy", "original": "1.00 (paper) / MM 0.9877, LR 0.9943 (Llama-2-13B replication, common grid)", "followup": "Qwen3.5 MM 0.9775 / LR 0.9881; gemma-4-12B MM 0.9544 / LR 0.9812", "source_file": "run/followup/001-living-update/results/generalization_followup.json", "note": "Truth is linearly separable WITHIN each dataset for both 2026 models, including gemma; gemma's failure is specifically the cross-dataset transfer."},
+    {"quantity": "Causal single-direction MM flip-rate (analog of C2/C17)", "original": "13B MM NIE 0.72/0.54 (likely / larger+smaller) - anchor nie_table_13b.json", "followup": "Qwen3.5-9B-Base: ~0 at 1x (saturated readout, like the whole Qwen family in 001), but 99.4% TRUE->FALSE at 2x and 100% at 4x with the SAME direction; FALSE->TRUE never flips", "source_file": "replication/codebase/experimental_outputs/nie_table_13b.json", "note": "Cheap single-direction analog via transformers hooks; confirms the MM direction is causally load-bearing (TRUE->FALSE) once the natural under-magnitude is corrected. Not the full 12-cell NIE table."}
+  ],
+  "artifacts": [
+    "results/generalization_followup.json",
+    "results/flip_rates.json",
+    "results/truth_direction_over_time.png",
+    "results/probe_acc_vs_scale.png",
+    "results/pca_cities_grid.png"
+  ],
+  "deviations": [
+    "Instruction said the text decoder is m.language_model; in transformers 5.17.0 it is m.model.language_model (for both qwen3_5 and gemma4_unified). Found by module introspection; the output_hidden_states residual-stream reading works exactly as instructed and matches a forward hook on layers[L] to 0.0.",
+    "A fresh venv (transformers 5.17.0) was required because the 001 venv (transformers 4.57.1) does not support model_type qwen3_5 / gemma4_unified. Old-model results were REUSED verbatim from the 001 living-update on disk (not recomputed); only the 2026 models were computed this session.",
+    "nnsight was NOT used for the 2026 models (it cannot wrap qwen3_5 / gemma4_unified); extraction uses transformers output_hidden_states and the causal analog uses transformers forward hooks, per the instruction.",
+    "gemma-4-12B was added as an optional SECOND 2026 point (weights fully present, 23 GB, hookable). Its causal flip-rate was NOT run (optional; interpretation is muddy given gemma's weak cross-dataset generalization).",
+    "The causal flip-rate is a cheap single-MM-direction analog of C2/C17, not the full per-layer/per-token 12-cell NIE Table 2.",
+    "New-model activations capped at N<=1000/dataset (seed 0); C19 computed on the common 8-dataset grid, matching the 001 protocol and the anchor's common-grid recompute."
+  ]
+}

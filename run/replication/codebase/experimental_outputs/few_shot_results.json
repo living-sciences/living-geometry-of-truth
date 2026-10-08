@@ -1,0 +1,332 @@
+[
+    {
+        "dataset": "cities",
+        "n_shots": 5,
+        "shots": [
+            "The city of Dombivli is in India.",
+            "The city of Nizhniy Novgorod is in Russia.",
+            "The city of Dakar is in India.",
+            "The city of Mbuji-Mayi is in the Democratic Republic of the Congo.",
+            "The city of Heze is in Yemen."
+        ],
+        "prompt": "The city of Dombivli is in India. TRUE\nThe city of Nizhniy Novgorod is in Russia. TRUE\nThe city of Dakar is in India. FALSE\nThe city of Mbuji-Mayi is in the Democratic Republic of the Congo. TRUE\nThe city of Heze is in Yemen. FALSE\n",
+        "gamma": 0.12350428104400635,
+        "acc": 0.9919517040252686,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "neg_cities",
+        "n_shots": 5,
+        "shots": [
+            "The city of Dombivli is not in India.",
+            "The city of Nizhniy Novgorod is not in Russia.",
+            "The city of Dakar is not in India.",
+            "The city of Mbuji-Mayi is not in the Democratic Republic of the Congo.",
+            "The city of Heze is not in Yemen."
+        ],
+        "prompt": "The city of Dombivli is not in India. FALSE\nThe city of Nizhniy Novgorod is not in Russia. FALSE\nThe city of Dakar is not in India. TRUE\nThe city of Mbuji-Mayi is not in the Democratic Republic of the Congo. FALSE\nThe city of Heze is not in Yemen. TRUE\n",
+        "gamma": -0.3003491759300232,
+        "acc": 0.30851778388023376,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "larger_than",
+        "n_shots": 5,
+        "shots": [
+            "Eighty-six is larger than seventy-three.",
+            "Fifty-two is larger than sixty-five.",
+            "Fifty-eight is larger than ninety-nine.",
+            "Ninety-three is larger than sixty-one.",
+            "Ninety-four is larger than sixty-six."
+        ],
+        "prompt": "Eighty-six is larger than seventy-three. TRUE\nFifty-two is larger than sixty-five. FALSE\nFifty-eight is larger than ninety-nine. FALSE\nNinety-three is larger than sixty-one. TRUE\nNinety-four is larger than sixty-six. TRUE\n",
+        "gamma": -0.18325617909431458,
+        "acc": 0.895696222782135,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "smaller_than",
+        "n_shots": 5,
+        "shots": [
+            "Eighty-six is smaller than seventy-three.",
+            "Fifty-two is smaller than sixty-five.",
+            "Fifty-eight is smaller than ninety-nine.",
+            "Ninety-three is smaller than sixty-one.",
+            "Ninety-four is smaller than sixty-six."
+        ],
+        "prompt": "Eighty-six is smaller than seventy-three. FALSE\nFifty-two is smaller than sixty-five. TRUE\nFifty-eight is smaller than ninety-nine. TRUE\nNinety-three is smaller than sixty-one. FALSE\nNinety-four is smaller than sixty-six. FALSE\n",
+        "gamma": -0.18297338485717773,
+        "acc": 0.4820253252983093,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "sp_en_trans",
+        "n_shots": 5,
+        "shots": [
+            "The Spanish word 'guardar' means 'to save'.",
+            "The Spanish word 'muy' means 'temperature'.",
+            "The Spanish word 'rosa' means 'rose'.",
+            "The Spanish word 'dinero' means 'mouth'.",
+            "The Spanish word 'cosa' means 'thing'."
+        ],
+        "prompt": "The Spanish word 'guardar' means 'to save'. TRUE\nThe Spanish word 'muy' means 'temperature'. FALSE\nThe Spanish word 'rosa' means 'rose'. TRUE\nThe Spanish word 'dinero' means 'mouth'. FALSE\nThe Spanish word 'cosa' means 'thing'. TRUE\n",
+        "gamma": -0.7002244591712952,
+        "acc": 1.0,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "neg_sp_en_trans",
+        "n_shots": 5,
+        "shots": [
+            "The Spanish word 'guardar' does not mean 'to save'.",
+            "The Spanish word 'muy' does not mean 'temperature'.",
+            "The Spanish word 'rosa' does not mean 'rose'.",
+            "The Spanish word 'dinero' does not mean 'mouth'.",
+            "The Spanish word 'cosa' does not mean 'thing'."
+        ],
+        "prompt": "The Spanish word 'guardar' does not mean 'to save'. FALSE\nThe Spanish word 'muy' does not mean 'temperature'. TRUE\nThe Spanish word 'rosa' does not mean 'rose'. FALSE\nThe Spanish word 'dinero' does not mean 'mouth'. TRUE\nThe Spanish word 'cosa' does not mean 'thing'. FALSE\n",
+        "gamma": 0.40940603613853455,
+        "acc": 0.9283667802810669,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "cities_cities_conj",
+        "n_shots": 5,
+        "shots": [
+            "It is the case both that the city of Marrakesh is in Morocco and that the city of Faisalabad is in China.",
+            "It is the case both that the city of Kyoto is in China and that the city of Almaty is in Kazakhstan.",
+            "It is the case both that the city of Vijayawada is in Mozambique and that the city of Zhangzhou is in Togo.",
+            "It is the case both that the city of Nova Iguacu is in South Korea and that the city of Wenzhou is in Mauritania.",
+            "It is the case both that the city of Kota Kinabalu is in Malaysia and that the city of Sanming is in Venezuela."
+        ],
+        "prompt": "It is the case both that the city of Marrakesh is in Morocco and that the city of Faisalabad is in China. FALSE\nIt is the case both that the city of Kyoto is in China and that the city of Almaty is in Kazakhstan. FALSE\nIt is the case both that the city of Vijayawada is in Mozambique and that the city of Zhangzhou is in Togo. FALSE\nIt is the case both that the city of Nova Iguacu is in South Korea and that the city of Wenzhou is in Mauritania. FALSE\nIt is the case both that the city of Kota Kinabalu is in Malaysia and that the city of Sanming is in Venezuela. FALSE\n",
+        "gamma": -0.4558418393135071,
+        "acc": 0.8472873568534851,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "cities_cities_disj",
+        "n_shots": 5,
+        "shots": [
+            "It is the case either that the city of Bishkek is in Iraq or that the city of Langfang is in the Philippines.",
+            "It is the case either that the city of Rio de Janeiro is in the Dominican Republic or that the city of E'zhou is in Malaysia.",
+            "It is the case either that the city of Krasnoyarsk is in Japan or that the city of Kozhikode is in Mexico.",
+            "It is the case either that the city of Sharjah is in South Korea or that the city of Chiclayo is in India.",
+            "It is the case either that the city of Guatemala City is in South Africa or that the city of Bujumbura is in China."
+        ],
+        "prompt": "It is the case either that the city of Bishkek is in Iraq or that the city of Langfang is in the Philippines. FALSE\nIt is the case either that the city of Rio de Janeiro is in the Dominican Republic or that the city of E'zhou is in Malaysia. FALSE\nIt is the case either that the city of Krasnoyarsk is in Japan or that the city of Kozhikode is in Mexico. FALSE\nIt is the case either that the city of Sharjah is in South Korea or that the city of Chiclayo is in India. FALSE\nIt is the case either that the city of Guatemala City is in South Africa or that the city of Bujumbura is in China. FALSE\n",
+        "gamma": -0.663851797580719,
+        "acc": 0.8245143890380859,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "companies_true_false",
+        "n_shots": 5,
+        "shots": [
+            "Pfizer operates in the industry of Insurance.",
+            "Berkshire Hathaway has headquarters in China.",
+            "Amazon.com operates in the industry of retailing.",
+            "Glencore operates in the industry of Telecommunications Services.",
+            "Shanghai Pudong Development Bank operates in the industry of Banking."
+        ],
+        "prompt": "Pfizer operates in the industry of Insurance. FALSE\nBerkshire Hathaway has headquarters in China. FALSE\nAmazon.com operates in the industry of retailing. TRUE\nGlencore operates in the industry of Telecommunications Services. FALSE\nShanghai Pudong Development Bank operates in the industry of Banking. FALSE\n",
+        "gamma": -0.2140873521566391,
+        "acc": 0.8995816111564636,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "common_claim_true_false",
+        "n_shots": 5,
+        "shots": [
+            "The mineral talc is the softest known mineral.",
+            "The monks of Silway have a lock of hair from Satan himself.",
+            "One study found fashion bloggers have been known to make an average of over one million dollars annually.",
+            "The letter J is the most commonly used letter in English-language writing.",
+            "Fungal networks can connect plants over large distances and allow for the sharing of information and resources."
+        ],
+        "prompt": "The mineral talc is the softest known mineral. TRUE\nThe monks of Silway have a lock of hair from Satan himself. FALSE\nOne study found fashion bloggers have been known to make an average of over one million dollars annually. FALSE\nThe letter J is the most commonly used letter in English-language writing. FALSE\nFungal networks can connect plants over large distances and allow for the sharing of information and resources. TRUE\n",
+        "gamma": -0.054987698793411255,
+        "acc": 0.7113610506057739,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "counterfact_true_false",
+        "n_shots": 5,
+        "shots": [
+            "The domain of activity of Edward Burnett Tylor is anthropology.",
+            "Arthur Moritz Schoenflies works in the field of astronomy.",
+            "The law in Donetsk Oblast declares the language English.",
+            "Lund Municipality is located in Sweden.",
+            "Louis Gabriel Michaud spoke the language French."
+        ],
+        "prompt": "The domain of activity of Edward Burnett Tylor is anthropology. TRUE\nArthur Moritz Schoenflies works in the field of astronomy. FALSE\nThe law in Donetsk Oblast declares the language English. FALSE\nLund Municipality is located in Sweden. TRUE\nLouis Gabriel Michaud spoke the language French. TRUE\n",
+        "gamma": -0.061177343130111694,
+        "acc": 0.8213961720466614,
+        "model": "llama-2-13b"
+    },
+    {
+        "dataset": "cities",
+        "n_shots": 5,
+        "shots": [
+            "The city of Dombivli is in India.",
+            "The city of Nizhniy Novgorod is in Russia.",
+            "The city of Dakar is in India.",
+            "The city of Mbuji-Mayi is in the Democratic Republic of the Congo.",
+            "The city of Heze is in Yemen."
+        ],
+        "prompt": "The city of Dombivli is in India. TRUE\nThe city of Nizhniy Novgorod is in Russia. TRUE\nThe city of Dakar is in India. FALSE\nThe city of Mbuji-Mayi is in the Democratic Republic of the Congo. TRUE\nThe city of Heze is in Yemen. FALSE\n",
+        "gamma": 0.12356364727020264,
+        "acc": 0.9651240706443787,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "neg_cities",
+        "n_shots": 5,
+        "shots": [
+            "The city of Dombivli is not in India.",
+            "The city of Nizhniy Novgorod is not in Russia.",
+            "The city of Dakar is not in India.",
+            "The city of Mbuji-Mayi is not in the Democratic Republic of the Congo.",
+            "The city of Heze is not in Yemen."
+        ],
+        "prompt": "The city of Dombivli is not in India. FALSE\nThe city of Nizhniy Novgorod is not in Russia. FALSE\nThe city of Dakar is not in India. TRUE\nThe city of Mbuji-Mayi is not in the Democratic Republic of the Congo. FALSE\nThe city of Heze is not in Yemen. TRUE\n",
+        "gamma": -0.4068828225135803,
+        "acc": 0.21462106704711914,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "larger_than",
+        "n_shots": 5,
+        "shots": [
+            "Eighty-six is larger than seventy-three.",
+            "Fifty-two is larger than sixty-five.",
+            "Fifty-eight is larger than ninety-nine.",
+            "Ninety-three is larger than sixty-one.",
+            "Ninety-four is larger than sixty-six."
+        ],
+        "prompt": "Eighty-six is larger than seventy-three. TRUE\nFifty-two is larger than sixty-five. FALSE\nFifty-eight is larger than ninety-nine. FALSE\nNinety-three is larger than sixty-one. TRUE\nNinety-four is larger than sixty-six. TRUE\n",
+        "gamma": 0.0,
+        "acc": 0.6693670749664307,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "smaller_than",
+        "n_shots": 5,
+        "shots": [
+            "Eighty-six is smaller than seventy-three.",
+            "Fifty-two is smaller than sixty-five.",
+            "Fifty-eight is smaller than ninety-nine.",
+            "Ninety-three is smaller than sixty-one.",
+            "Ninety-four is smaller than sixty-six."
+        ],
+        "prompt": "Eighty-six is smaller than seventy-three. FALSE\nFifty-two is smaller than sixty-five. TRUE\nFifty-eight is smaller than ninety-nine. TRUE\nNinety-three is smaller than sixty-one. FALSE\nNinety-four is smaller than sixty-six. FALSE\n",
+        "gamma": -0.12389206886291504,
+        "acc": 0.499240517616272,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "sp_en_trans",
+        "n_shots": 5,
+        "shots": [
+            "The Spanish word 'guardar' means 'to save'.",
+            "The Spanish word 'muy' means 'temperature'.",
+            "The Spanish word 'rosa' means 'rose'.",
+            "The Spanish word 'dinero' means 'mouth'.",
+            "The Spanish word 'cosa' means 'thing'."
+        ],
+        "prompt": "The Spanish word 'guardar' means 'to save'. TRUE\nThe Spanish word 'muy' means 'temperature'. FALSE\nThe Spanish word 'rosa' means 'rose'. TRUE\nThe Spanish word 'dinero' means 'mouth'. FALSE\nThe Spanish word 'cosa' means 'thing'. TRUE\n",
+        "gamma": -0.667937159538269,
+        "acc": 0.9713466763496399,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "neg_sp_en_trans",
+        "n_shots": 5,
+        "shots": [
+            "The Spanish word 'guardar' does not mean 'to save'.",
+            "The Spanish word 'muy' does not mean 'temperature'.",
+            "The Spanish word 'rosa' does not mean 'rose'.",
+            "The Spanish word 'dinero' does not mean 'mouth'.",
+            "The Spanish word 'cosa' does not mean 'thing'."
+        ],
+        "prompt": "The Spanish word 'guardar' does not mean 'to save'. FALSE\nThe Spanish word 'muy' does not mean 'temperature'. TRUE\nThe Spanish word 'rosa' does not mean 'rose'. FALSE\nThe Spanish word 'dinero' does not mean 'mouth'. TRUE\nThe Spanish word 'cosa' does not mean 'thing'. FALSE\n",
+        "gamma": 0.5082276463508606,
+        "acc": 0.5902578830718994,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "cities_cities_conj",
+        "n_shots": 5,
+        "shots": [
+            "It is the case both that the city of Marrakesh is in Morocco and that the city of Faisalabad is in China.",
+            "It is the case both that the city of Kyoto is in China and that the city of Almaty is in Kazakhstan.",
+            "It is the case both that the city of Vijayawada is in Mozambique and that the city of Zhangzhou is in Togo.",
+            "It is the case both that the city of Nova Iguacu is in South Korea and that the city of Wenzhou is in Mauritania.",
+            "It is the case both that the city of Kota Kinabalu is in Malaysia and that the city of Sanming is in Venezuela."
+        ],
+        "prompt": "It is the case both that the city of Marrakesh is in Morocco and that the city of Faisalabad is in China. FALSE\nIt is the case both that the city of Kyoto is in China and that the city of Almaty is in Kazakhstan. FALSE\nIt is the case both that the city of Vijayawada is in Mozambique and that the city of Zhangzhou is in Togo. FALSE\nIt is the case both that the city of Nova Iguacu is in South Korea and that the city of Wenzhou is in Mauritania. FALSE\nIt is the case both that the city of Kota Kinabalu is in Malaysia and that the city of Sanming is in Venezuela. FALSE\n",
+        "gamma": -0.8616008162498474,
+        "acc": 0.7280642986297607,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "cities_cities_disj",
+        "n_shots": 5,
+        "shots": [
+            "It is the case either that the city of Bishkek is in Iraq or that the city of Langfang is in the Philippines.",
+            "It is the case either that the city of Rio de Janeiro is in the Dominican Republic or that the city of E'zhou is in Malaysia.",
+            "It is the case either that the city of Krasnoyarsk is in Japan or that the city of Kozhikode is in Mexico.",
+            "It is the case either that the city of Sharjah is in South Korea or that the city of Chiclayo is in India.",
+            "It is the case either that the city of Guatemala City is in South Africa or that the city of Bujumbura is in China."
+        ],
+        "prompt": "It is the case either that the city of Bishkek is in Iraq or that the city of Langfang is in the Philippines. FALSE\nIt is the case either that the city of Rio de Janeiro is in the Dominican Republic or that the city of E'zhou is in Malaysia. FALSE\nIt is the case either that the city of Krasnoyarsk is in Japan or that the city of Kozhikode is in Mexico. FALSE\nIt is the case either that the city of Sharjah is in South Korea or that the city of Chiclayo is in India. FALSE\nIt is the case either that the city of Guatemala City is in South Africa or that the city of Bujumbura is in China. FALSE\n",
+        "gamma": -0.8567934036254883,
+        "acc": 0.7133288383483887,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "companies_true_false",
+        "n_shots": 5,
+        "shots": [
+            "Pfizer operates in the industry of Insurance.",
+            "Berkshire Hathaway has headquarters in China.",
+            "Amazon.com operates in the industry of retailing.",
+            "Glencore operates in the industry of Telecommunications Services.",
+            "Shanghai Pudong Development Bank operates in the industry of Banking."
+        ],
+        "prompt": "Pfizer operates in the industry of Insurance. FALSE\nBerkshire Hathaway has headquarters in China. FALSE\nAmazon.com operates in the industry of retailing. TRUE\nGlencore operates in the industry of Telecommunications Services. FALSE\nShanghai Pudong Development Bank operates in the industry of Banking. FALSE\n",
+        "gamma": 0.3569032549858093,
+        "acc": 0.6301255226135254,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "common_claim_true_false",
+        "n_shots": 5,
+        "shots": [
+            "The mineral talc is the softest known mineral.",
+            "The monks of Silway have a lock of hair from Satan himself.",
+            "One study found fashion bloggers have been known to make an average of over one million dollars annually.",
+            "The letter J is the most commonly used letter in English-language writing.",
+            "Fungal networks can connect plants over large distances and allow for the sharing of information and resources."
+        ],
+        "prompt": "The mineral talc is the softest known mineral. TRUE\nThe monks of Silway have a lock of hair from Satan himself. FALSE\nOne study found fashion bloggers have been known to make an average of over one million dollars annually. FALSE\nThe letter J is the most commonly used letter in English-language writing. FALSE\nFungal networks can connect plants over large distances and allow for the sharing of information and resources. TRUE\n",
+        "gamma": -0.18313494324684143,
+        "acc": 0.6389201283454895,
+        "model": "llama-2-7b"
+    },
+    {
+        "dataset": "counterfact_true_false",
+        "n_shots": 5,
+        "shots": [
+            "The domain of activity of Edward Burnett Tylor is anthropology.",
+            "Arthur Moritz Schoenflies works in the field of astronomy.",
+            "The law in Donetsk Oblast declares the language English.",
+            "Lund Municipality is located in Sweden.",
+            "Louis Gabriel Michaud spoke the language French."
+        ],
+        "prompt": "The domain of activity of Edward Burnett Tylor is anthropology. TRUE\nArthur Moritz Schoenflies works in the field of astronomy. FALSE\nThe law in Donetsk Oblast declares the language English. FALSE\nLund Municipality is located in Sweden. TRUE\nLouis Gabriel Michaud spoke the language French. TRUE\n",
+        "gamma": -0.29972657561302185,
+        "acc": 0.7275884747505188,
+        "model": "llama-2-7b"
+    }
+]

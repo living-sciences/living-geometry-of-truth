@@ -1,0 +1,32 @@
+[NbConvertApp] Converting notebook dataexplorer_13b.ipynb to notebook
+[NbConvertApp] ERROR | Notebook JSON is invalid: Additional properties are not allowed ('id' was unexpected)
+
+Failed validating 'additionalProperties' in code_cell:
+
+On instance['cells'][6]:
+{'cell_type': 'code',
+ 'execution_count': None,
+ 'id': '6cce90dc',
+ 'metadata': {},
+ 'outputs': ['...0 outputs...'],
+ 'source': '\n'
+           '# Axis-rotation panel: cities + neg_cities in their own PCA '
+           'bas...'}
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] ERROR | Notebook JSON is invalid: Additional properties are not allowed ('id' was unexpected)
+
+Failed validating 'additionalProperties' in code_cell:
+
+On instance['cells'][6]:
+{'cell_type': 'code',
+ 'execution_count': 7,
+ 'id': '6cce90dc',
+ 'metadata': {'execution': {'iopub.execute_input': '2026-09-08T06:20:14.589819Z',
+                            'iopub.status.busy': '2026-09-08T06:20:14.589655Z',
+                            'iopub.status.idle': '2026-09-08T06:21:11.112975Z',
+                            'shell.execute_reply': '2026-09-08T06:21:11.111934Z'}},
+ 'outputs': ['...1 outputs...'],
+ 'source': '\n'
+           '# Axis-rotation panel: cities + neg_cities in their own PCA '
+           'bas...'}
+[NbConvertApp] Writing 36425968 bytes to dataexplorer_13b_executed.ipynb

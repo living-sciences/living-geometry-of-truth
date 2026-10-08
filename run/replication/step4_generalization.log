@@ -1,0 +1,24 @@
+/net/projects2/chai-lab-models/haokunliu/alignment-batch/alignment_papers/test-corpus/geometry-of-truth/run/replication/codebase/utils.py:100: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)
+  labels = t.Tensor(df[label].values).to(device)
+
+===== llama-2-13b (layer 14, noperiod False, seed 42) =====
+  LR  cities            OOD-avg: 0.7383
+  LR  cities+neg_cities OOD-avg: 0.8305
+  LR  larger_than       OOD-avg: 0.7419
+  LR  lt+st             OOD-avg: 0.8086
+  MM  cities+neg_cities OOD-avg: 0.8439
+  CCS cities+neg_cities OOD-avg: 0.6407
+  oracle LR avg        : 0.9609
+  saved figures/llama-2-13b_generalization.pdf/.png
+
+===== llama-2-7b (layer 13, noperiod False, seed 42) =====
+  LR  cities            OOD-avg: 0.6098
+  LR  cities+neg_cities OOD-avg: 0.6795
+  LR  larger_than       OOD-avg: 0.5062
+  LR  lt+st             OOD-avg: 0.7078
+  MM  cities+neg_cities OOD-avg: 0.5665
+  CCS cities+neg_cities OOD-avg: 0.6795
+  oracle LR avg        : 0.9439
+  saved figures/llama-2-7b_generalization.pdf/.png
+
+DONE

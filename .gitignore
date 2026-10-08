@@ -1,0 +1,25 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Activation caches and model/weight artifacts (regenerate with generate_acts.py)
+acts/
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.gguf
+*.h5
+*.bin
+
+# OS / editor cruft
+.DS_Store
+*.swp
+.ipynb_checkpoints/

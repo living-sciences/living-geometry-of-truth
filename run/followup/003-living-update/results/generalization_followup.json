@@ -1,0 +1,3150 @@
+{
+  "llama-2-7b": {
+    "probe_layer": 13,
+    "best_val_layer": 13,
+    "sweep_layers": [
+      7,
+      10,
+      13,
+      16,
+      20,
+      24
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.7457627058029175,
+        "MM": 0.9265536665916443,
+        "CCS": 0.7966101765632629
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.5188973837278106,
+        "LR": 0.5572411030051158
+      },
+      "oracle_avg": {
+        "LR": 0.9835522845387459,
+        "MM": 0.9833706244826317
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9900000095367432,
+            "neg_cities": 0.002005347516387701,
+            "larger_than": 0.7015151977539062,
+            "smaller_than": 0.4545454680919647,
+            "sp_en_trans": 0.8276836276054382,
+            "neg_sp_en_trans": 0.1214689239859581,
+            "likely": 0.3843291401863098,
+            "cities_cities_conj": 0.9012016654014587
+          },
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9766666889190674,
+            "larger_than": 0.6060606241226196,
+            "smaller_than": 0.6848484873771667,
+            "sp_en_trans": 0.9209039807319641,
+            "neg_sp_en_trans": 0.7231638431549072,
+            "likely": 0.4812900424003601,
+            "cities_cities_conj": 0.8144192695617676
+          },
+          "larger_than": {
+            "cities": 0.7439839839935303,
+            "neg_cities": 0.41978609561920166,
+            "larger_than": 1.0,
+            "smaller_than": 0.0,
+            "sp_en_trans": 0.6581920981407166,
+            "neg_sp_en_trans": 0.20338982343673706,
+            "likely": 0.49142029881477356,
+            "cities_cities_conj": 0.6448598504066467
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9485294222831726,
+            "neg_cities": 0.5173797011375427,
+            "larger_than": 1.0,
+            "smaller_than": 0.9898989796638489,
+            "sp_en_trans": 0.7457627058029175,
+            "neg_sp_en_trans": 0.8361582159996033,
+            "likely": 0.4895596504211426,
+            "cities_cities_conj": 0.8397864103317261
+          },
+          "likely": {
+            "cities": 0.3709893226623535,
+            "neg_cities": 0.5902406573295593,
+            "larger_than": 0.5661616325378418,
+            "smaller_than": 0.4015151560306549,
+            "sp_en_trans": 0.7881355881690979,
+            "neg_sp_en_trans": 0.07909604907035828,
+            "likely": 0.9555554986000061,
+            "cities_cities_conj": 0.43057411909103394
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.4745989441871643,
+            "larger_than": 0.44141414761543274,
+            "smaller_than": 0.5661616325378418,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.07062146812677383,
+            "likely": 0.43766796588897705,
+            "cities_cities_conj": 0.5527369976043701
+          },
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9800000190734863,
+            "larger_than": 0.44141414761543274,
+            "smaller_than": 0.5661616325378418,
+            "sp_en_trans": 0.9237288236618042,
+            "neg_sp_en_trans": 0.694915235042572,
+            "likely": 0.49193716049194336,
+            "cities_cities_conj": 0.5060080289840698
+          },
+          "larger_than": {
+            "cities": 0.5060160756111145,
+            "neg_cities": 0.49665775895118713,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.4338383972644806,
+            "sp_en_trans": 0.1525423675775528,
+            "neg_sp_en_trans": 0.8474576473236084,
+            "likely": 0.5096133947372437,
+            "cities_cities_conj": 0.4933244585990906
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.4939839541912079,
+            "neg_cities": 0.5033422708511353,
+            "larger_than": 0.9848484992980957,
+            "smaller_than": 0.9696969985961914,
+            "sp_en_trans": 0.9265536665916443,
+            "neg_sp_en_trans": 0.1666666716337204,
+            "likely": 0.4719867706298828,
+            "cities_cities_conj": 0.5160213708877563
+          },
+          "likely": {
+            "cities": 0.5060160756111145,
+            "neg_cities": 0.49665775895118713,
+            "larger_than": 0.5585858821868896,
+            "smaller_than": 0.4338383972644806,
+            "sp_en_trans": 0.24858757853507996,
+            "neg_sp_en_trans": 0.7514124512672424,
+            "likely": 0.9286821484565735,
+            "cities_cities_conj": 0.49399200081825256
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9866666793823242,
+            "larger_than": 0.5712121725082397,
+            "smaller_than": 0.7398990392684937,
+            "sp_en_trans": 0.8615819215774536,
+            "neg_sp_en_trans": 0.7683615684509277,
+            "likely": 0.4777754843235016,
+            "cities_cities_conj": 0.8257677555084229
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9418449401855469,
+            "neg_cities": 0.5334224700927734,
+            "larger_than": 1.0,
+            "smaller_than": 0.9696969985961914,
+            "sp_en_trans": 0.7966101765632629,
+            "neg_sp_en_trans": 0.8841807842254639,
+            "likely": 0.4896630048751831,
+            "cities_cities_conj": 0.8271028399467468
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9900000095367432,
+            "neg_cities": 0.9933333396911621,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9718309640884399,
+            "neg_sp_en_trans": 0.98591548204422,
+            "likely": 0.9540051221847534,
+            "cities_cities_conj": 0.9733333587646484
+          },
+          "MMProbe": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9286821484565735,
+            "cities_cities_conj": 0.9533333778381348
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.7457627058029175,
+        "MM": 0.9265536665916443,
+        "CCS": 0.7966101765632629
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.5188973837278106,
+        "LR": 0.5572411030051158
+      },
+      "oracle_avg": {
+        "LR": 0.9835522845387459,
+        "MM": 0.9833706244826317
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9900000095367432,
+            "neg_cities": 0.002005347516387701,
+            "larger_than": 0.7015151977539062,
+            "smaller_than": 0.4545454680919647,
+            "sp_en_trans": 0.8276836276054382,
+            "neg_sp_en_trans": 0.1214689239859581,
+            "likely": 0.3843291401863098,
+            "cities_cities_conj": 0.9012016654014587
+          },
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9766666889190674,
+            "larger_than": 0.6060606241226196,
+            "smaller_than": 0.6848484873771667,
+            "sp_en_trans": 0.9209039807319641,
+            "neg_sp_en_trans": 0.7231638431549072,
+            "likely": 0.4812900424003601,
+            "cities_cities_conj": 0.8144192695617676
+          },
+          "larger_than": {
+            "cities": 0.7439839839935303,
+            "neg_cities": 0.41978609561920166,
+            "larger_than": 1.0,
+            "smaller_than": 0.0,
+            "sp_en_trans": 0.6581920981407166,
+            "neg_sp_en_trans": 0.20338982343673706,
+            "likely": 0.49142029881477356,
+            "cities_cities_conj": 0.6448598504066467
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9485294222831726,
+            "neg_cities": 0.5173797011375427,
+            "larger_than": 1.0,
+            "smaller_than": 0.9898989796638489,
+            "sp_en_trans": 0.7457627058029175,
+            "neg_sp_en_trans": 0.8361582159996033,
+            "likely": 0.4895596504211426,
+            "cities_cities_conj": 0.8397864103317261
+          },
+          "likely": {
+            "cities": 0.3709893226623535,
+            "neg_cities": 0.5902406573295593,
+            "larger_than": 0.5661616325378418,
+            "smaller_than": 0.4015151560306549,
+            "sp_en_trans": 0.7881355881690979,
+            "neg_sp_en_trans": 0.07909604907035828,
+            "likely": 0.9555554986000061,
+            "cities_cities_conj": 0.43057411909103394
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.4745989441871643,
+            "larger_than": 0.44141414761543274,
+            "smaller_than": 0.5661616325378418,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.07062146812677383,
+            "likely": 0.43766796588897705,
+            "cities_cities_conj": 0.5527369976043701
+          },
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9800000190734863,
+            "larger_than": 0.44141414761543274,
+            "smaller_than": 0.5661616325378418,
+            "sp_en_trans": 0.9237288236618042,
+            "neg_sp_en_trans": 0.694915235042572,
+            "likely": 0.49193716049194336,
+            "cities_cities_conj": 0.5060080289840698
+          },
+          "larger_than": {
+            "cities": 0.5060160756111145,
+            "neg_cities": 0.49665775895118713,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.4338383972644806,
+            "sp_en_trans": 0.1525423675775528,
+            "neg_sp_en_trans": 0.8474576473236084,
+            "likely": 0.5096133947372437,
+            "cities_cities_conj": 0.4933244585990906
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.4939839541912079,
+            "neg_cities": 0.5033422708511353,
+            "larger_than": 0.9848484992980957,
+            "smaller_than": 0.9696969985961914,
+            "sp_en_trans": 0.9265536665916443,
+            "neg_sp_en_trans": 0.1666666716337204,
+            "likely": 0.4719867706298828,
+            "cities_cities_conj": 0.5160213708877563
+          },
+          "likely": {
+            "cities": 0.5060160756111145,
+            "neg_cities": 0.49665775895118713,
+            "larger_than": 0.5585858821868896,
+            "smaller_than": 0.4338383972644806,
+            "sp_en_trans": 0.24858757853507996,
+            "neg_sp_en_trans": 0.7514124512672424,
+            "likely": 0.9286821484565735,
+            "cities_cities_conj": 0.49399200081825256
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9866666793823242,
+            "neg_cities": 0.9866666793823242,
+            "larger_than": 0.5712121725082397,
+            "smaller_than": 0.7398990392684937,
+            "sp_en_trans": 0.8615819215774536,
+            "neg_sp_en_trans": 0.7683615684509277,
+            "likely": 0.4777754843235016,
+            "cities_cities_conj": 0.8257677555084229
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9418449401855469,
+            "neg_cities": 0.5334224700927734,
+            "larger_than": 1.0,
+            "smaller_than": 0.9696969985961914,
+            "sp_en_trans": 0.7966101765632629,
+            "neg_sp_en_trans": 0.8841807842254639,
+            "likely": 0.4896630048751831,
+            "cities_cities_conj": 0.8271028399467468
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9900000095367432,
+            "neg_cities": 0.9933333396911621,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9718309640884399,
+            "neg_sp_en_trans": 0.98591548204422,
+            "likely": 0.9540051221847534,
+            "cities_cities_conj": 0.9733333587646484
+          },
+          "MMProbe": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9286821484565735,
+            "cities_cities_conj": 0.9533333778381348
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "7": 0.4995770445375731,
+      "10": 0.5014546387123339,
+      "13": 0.5188973837278106,
+      "16": 0.506140457409801,
+      "20": 0.5042971160375711,
+      "24": 0.5157995309793588
+    }
+  },
+  "llama-2-13b": {
+    "probe_layer": 14,
+    "best_val_layer": 14,
+    "sweep_layers": [
+      10,
+      14,
+      15,
+      20,
+      25,
+      30
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9717513918876648,
+        "MM": 0.9745762944221497,
+        "CCS": 0.9802259802818298
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.7690387045343717,
+        "LR": 0.7567663579106783
+      },
+      "oracle_avg": {
+        "LR": 0.9942935109138489,
+        "MM": 0.9876970276236534
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.2560160458087921,
+            "larger_than": 0.9782828688621521,
+            "smaller_than": 0.7151515483856201,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.41525423526763916,
+            "likely": 0.5451726317405701,
+            "cities_cities_conj": 0.9666222333908081
+          },
+          "cities+neg_cities": {
+            "cities": 0.996666669845581,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.8292929530143738,
+            "smaller_than": 0.7843434810638428,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.9406779408454895,
+            "likely": 0.5843498110771179,
+            "cities_cities_conj": 0.9405874609947205
+          },
+          "larger_than": {
+            "cities": 0.9478609561920166,
+            "neg_cities": 0.9745989441871643,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.01313131395727396,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 0.8446327447891235,
+            "likely": 0.6222865581512451,
+            "cities_cities_conj": 0.9225634336471558
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8442513346672058,
+            "neg_cities": 0.9893048405647278,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.8276836276054382,
+            "likely": 0.5879677534103394,
+            "cities_cities_conj": 0.9606142044067383
+          },
+          "likely": {
+            "cities": 0.6631016135215759,
+            "neg_cities": 0.8863636255264282,
+            "larger_than": 0.6308081150054932,
+            "smaller_than": 0.6893939971923828,
+            "sp_en_trans": 0.5649717450141907,
+            "neg_sp_en_trans": 0.7711864709854126,
+            "likely": 0.9607234597206116,
+            "cities_cities_conj": 0.3417890667915344
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.7286096215248108,
+            "larger_than": 0.9040404558181763,
+            "smaller_than": 0.5479798316955566,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.18644067645072937,
+            "likely": 0.6926814317703247,
+            "cities_cities_conj": 0.9365821480751038
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.8974747657775879,
+            "smaller_than": 0.7924242615699768,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.9661017060279846,
+            "likely": 0.6994004249572754,
+            "cities_cities_conj": 0.9272363781929016
+          },
+          "larger_than": {
+            "cities": 0.9304813146591187,
+            "neg_cities": 0.8114973306655884,
+            "larger_than": 1.0,
+            "smaller_than": 0.06666667014360428,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.6779661178588867,
+            "likely": 0.5563365817070007,
+            "cities_cities_conj": 0.9425901770591736
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.89371657371521,
+            "neg_cities": 0.9759358763694763,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9745762944221497,
+            "neg_sp_en_trans": 0.8700565099716187,
+            "likely": 0.5696712732315063,
+            "cities_cities_conj": 0.9559413194656372
+          },
+          "likely": {
+            "cities": 0.8622995018959045,
+            "neg_cities": 0.8636363744735718,
+            "larger_than": 0.6762626767158508,
+            "smaller_than": 0.5191919207572937,
+            "sp_en_trans": 0.8531073331832886,
+            "neg_sp_en_trans": 0.3644067943096161,
+            "likely": 0.9049095511436462,
+            "cities_cities_conj": 0.8084112405776978
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.9449495673179626,
+            "smaller_than": 0.8030303120613098,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.9717513918876648,
+            "likely": 0.5901384949684143,
+            "cities_cities_conj": 0.9532710909843445
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8836898803710938,
+            "neg_cities": 0.9893048405647278,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.7740113139152527,
+            "likely": 0.5910688638687134,
+            "cities_cities_conj": 0.9592790603637695
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9602066874504089,
+            "cities_cities_conj": 1.0
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9049095511436462,
+            "cities_cities_conj": 1.0
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9717513918876648,
+        "MM": 0.9745762944221497,
+        "CCS": 0.9802259802818298
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.7690387045343717,
+        "LR": 0.7567663579106783
+      },
+      "oracle_avg": {
+        "LR": 0.9942935109138489,
+        "MM": 0.9876970276236534
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.2560160458087921,
+            "larger_than": 0.9782828688621521,
+            "smaller_than": 0.7151515483856201,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.41525423526763916,
+            "likely": 0.5451726317405701,
+            "cities_cities_conj": 0.9666222333908081
+          },
+          "cities+neg_cities": {
+            "cities": 0.996666669845581,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.8292929530143738,
+            "smaller_than": 0.7843434810638428,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.9406779408454895,
+            "likely": 0.5843498110771179,
+            "cities_cities_conj": 0.9405874609947205
+          },
+          "larger_than": {
+            "cities": 0.9478609561920166,
+            "neg_cities": 0.9745989441871643,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 0.01313131395727396,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 0.8446327447891235,
+            "likely": 0.6222865581512451,
+            "cities_cities_conj": 0.9225634336471558
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8442513346672058,
+            "neg_cities": 0.9893048405647278,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.8276836276054382,
+            "likely": 0.5879677534103394,
+            "cities_cities_conj": 0.9606142044067383
+          },
+          "likely": {
+            "cities": 0.6631016135215759,
+            "neg_cities": 0.8863636255264282,
+            "larger_than": 0.6308081150054932,
+            "smaller_than": 0.6893939971923828,
+            "sp_en_trans": 0.5649717450141907,
+            "neg_sp_en_trans": 0.7711864709854126,
+            "likely": 0.9607234597206116,
+            "cities_cities_conj": 0.3417890667915344
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.7286096215248108,
+            "larger_than": 0.9040404558181763,
+            "smaller_than": 0.5479798316955566,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.18644067645072937,
+            "likely": 0.6926814317703247,
+            "cities_cities_conj": 0.9365821480751038
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.8974747657775879,
+            "smaller_than": 0.7924242615699768,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.9661017060279846,
+            "likely": 0.6994004249572754,
+            "cities_cities_conj": 0.9272363781929016
+          },
+          "larger_than": {
+            "cities": 0.9304813146591187,
+            "neg_cities": 0.8114973306655884,
+            "larger_than": 1.0,
+            "smaller_than": 0.06666667014360428,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.6779661178588867,
+            "likely": 0.5563365817070007,
+            "cities_cities_conj": 0.9425901770591736
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.89371657371521,
+            "neg_cities": 0.9759358763694763,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9745762944221497,
+            "neg_sp_en_trans": 0.8700565099716187,
+            "likely": 0.5696712732315063,
+            "cities_cities_conj": 0.9559413194656372
+          },
+          "likely": {
+            "cities": 0.8622995018959045,
+            "neg_cities": 0.8636363744735718,
+            "larger_than": 0.6762626767158508,
+            "smaller_than": 0.5191919207572937,
+            "sp_en_trans": 0.8531073331832886,
+            "neg_sp_en_trans": 0.3644067943096161,
+            "likely": 0.9049095511436462,
+            "cities_cities_conj": 0.8084112405776978
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9933333396911621,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.9449495673179626,
+            "smaller_than": 0.8030303120613098,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.9717513918876648,
+            "likely": 0.5901384949684143,
+            "cities_cities_conj": 0.9532710909843445
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8836898803710938,
+            "neg_cities": 0.9893048405647278,
+            "larger_than": 0.9949495196342468,
+            "smaller_than": 0.997474730014801,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.7740113139152527,
+            "likely": 0.5910688638687134,
+            "cities_cities_conj": 0.9592790603637695
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 0.997474730014801,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9602066874504089,
+            "cities_cities_conj": 1.0
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.996666669845581,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9049095511436462,
+            "cities_cities_conj": 1.0
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "10": 0.5976587836207314,
+      "14": 0.7690387045343717,
+      "15": 0.7534263052723624,
+      "20": 0.6572962922580314,
+      "25": 0.6231513772950028,
+      "30": 0.6034574630585584
+    }
+  },
+  "llama-3.1-8b": {
+    "probe_layer": 13,
+    "best_val_layer": 13,
+    "sweep_layers": [
+      8,
+      12,
+      13,
+      16,
+      20,
+      24
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9717513918876648,
+        "MM": 0.9858757257461548,
+        "CCS": 0.9604519605636597
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8077387694608081,
+        "LR": 0.8025095277663433
+      },
+      "oracle_avg": {
+        "LR": 0.9893749952316284,
+        "MM": 0.9887499958276749
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.5560000538825989,
+            "larger_than": 0.7830000519752502,
+            "smaller_than": 0.8880000710487366,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.23163841664791107,
+            "likely": 0.51500004529953,
+            "cities_cities_conj": 0.9070000648498535
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9100000262260437,
+            "smaller_than": 0.9380000233650208,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9237288236618042,
+            "likely": 0.5430000424385071,
+            "cities_cities_conj": 0.8970000147819519
+          },
+          "larger_than": {
+            "cities": 0.8300000429153442,
+            "neg_cities": 0.9760000705718994,
+            "larger_than": 1.0,
+            "smaller_than": 0.8710000514984131,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.8898305296897888,
+            "likely": 0.4790000319480896,
+            "cities_cities_conj": 0.906000018119812
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8360000252723694,
+            "neg_cities": 0.9960000514984131,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.9293785095214844,
+            "likely": 0.5139999985694885,
+            "cities_cities_conj": 0.893000066280365
+          },
+          "likely": {
+            "cities": 0.7300000190734863,
+            "neg_cities": 0.8440000414848328,
+            "larger_than": 0.7790000438690186,
+            "smaller_than": 0.7940000295639038,
+            "sp_en_trans": 0.5367231369018555,
+            "neg_sp_en_trans": 0.7966101765632629,
+            "likely": 0.9350000023841858,
+            "cities_cities_conj": 0.8690000176429749
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.706000030040741,
+            "larger_than": 0.9150000214576721,
+            "smaller_than": 0.9430000185966492,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.06497175246477127,
+            "likely": 0.6410000324249268,
+            "cities_cities_conj": 0.8500000238418579
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9530000686645508,
+            "smaller_than": 0.9620000720024109,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.6550000309944153,
+            "cities_cities_conj": 0.8600000143051147
+          },
+          "larger_than": {
+            "cities": 0.7590000629425049,
+            "neg_cities": 0.9910000562667847,
+            "larger_than": 1.0,
+            "smaller_than": 0.8480000495910645,
+            "sp_en_trans": 0.9576271176338196,
+            "neg_sp_en_trans": 0.9491525292396545,
+            "likely": 0.550000011920929,
+            "cities_cities_conj": 0.89000004529953
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8370000123977661,
+            "neg_cities": 0.9980000257492065,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.9378530979156494,
+            "likely": 0.6270000338554382,
+            "cities_cities_conj": 0.89000004529953
+          },
+          "likely": {
+            "cities": 0.8540000319480896,
+            "neg_cities": 0.7920000553131104,
+            "larger_than": 0.609000027179718,
+            "smaller_than": 0.812000036239624,
+            "sp_en_trans": 0.7118644118309021,
+            "neg_sp_en_trans": 0.3446327745914459,
+            "likely": 0.9149999618530273,
+            "cities_cities_conj": 0.784000039100647
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9300000667572021,
+            "smaller_than": 0.9300000667572021,
+            "sp_en_trans": 0.991525411605835,
+            "neg_sp_en_trans": 0.9802259802818298,
+            "likely": 0.534000039100647,
+            "cities_cities_conj": 0.9190000295639038
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8410000205039978,
+            "neg_cities": 0.9900000691413879,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9604519605636597,
+            "neg_sp_en_trans": 0.9067796468734741,
+            "likely": 0.503000020980835,
+            "cities_cities_conj": 0.8950000405311584
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9399999976158142,
+            "cities_cities_conj": 0.98499995470047
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9149999618530273,
+            "cities_cities_conj": 1.0
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9717513918876648,
+        "MM": 0.9858757257461548,
+        "CCS": 0.9604519605636597
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8077387694608081,
+        "LR": 0.8025095277663433
+      },
+      "oracle_avg": {
+        "LR": 0.9893749952316284,
+        "MM": 0.9887499958276749
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.5560000538825989,
+            "larger_than": 0.7830000519752502,
+            "smaller_than": 0.8880000710487366,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.23163841664791107,
+            "likely": 0.51500004529953,
+            "cities_cities_conj": 0.9070000648498535
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9100000262260437,
+            "smaller_than": 0.9380000233650208,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9237288236618042,
+            "likely": 0.5430000424385071,
+            "cities_cities_conj": 0.8970000147819519
+          },
+          "larger_than": {
+            "cities": 0.8300000429153442,
+            "neg_cities": 0.9760000705718994,
+            "larger_than": 1.0,
+            "smaller_than": 0.8710000514984131,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.8898305296897888,
+            "likely": 0.4790000319480896,
+            "cities_cities_conj": 0.906000018119812
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8360000252723694,
+            "neg_cities": 0.9960000514984131,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.9293785095214844,
+            "likely": 0.5139999985694885,
+            "cities_cities_conj": 0.893000066280365
+          },
+          "likely": {
+            "cities": 0.7300000190734863,
+            "neg_cities": 0.8440000414848328,
+            "larger_than": 0.7790000438690186,
+            "smaller_than": 0.7940000295639038,
+            "sp_en_trans": 0.5367231369018555,
+            "neg_sp_en_trans": 0.7966101765632629,
+            "likely": 0.9350000023841858,
+            "cities_cities_conj": 0.8690000176429749
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.706000030040741,
+            "larger_than": 0.9150000214576721,
+            "smaller_than": 0.9430000185966492,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.06497175246477127,
+            "likely": 0.6410000324249268,
+            "cities_cities_conj": 0.8500000238418579
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9530000686645508,
+            "smaller_than": 0.9620000720024109,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.6550000309944153,
+            "cities_cities_conj": 0.8600000143051147
+          },
+          "larger_than": {
+            "cities": 0.7590000629425049,
+            "neg_cities": 0.9910000562667847,
+            "larger_than": 1.0,
+            "smaller_than": 0.8480000495910645,
+            "sp_en_trans": 0.9576271176338196,
+            "neg_sp_en_trans": 0.9491525292396545,
+            "likely": 0.550000011920929,
+            "cities_cities_conj": 0.89000004529953
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8370000123977661,
+            "neg_cities": 0.9980000257492065,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.9378530979156494,
+            "likely": 0.6270000338554382,
+            "cities_cities_conj": 0.89000004529953
+          },
+          "likely": {
+            "cities": 0.8540000319480896,
+            "neg_cities": 0.7920000553131104,
+            "larger_than": 0.609000027179718,
+            "smaller_than": 0.812000036239624,
+            "sp_en_trans": 0.7118644118309021,
+            "neg_sp_en_trans": 0.3446327745914459,
+            "likely": 0.9149999618530273,
+            "cities_cities_conj": 0.784000039100647
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9300000667572021,
+            "smaller_than": 0.9300000667572021,
+            "sp_en_trans": 0.991525411605835,
+            "neg_sp_en_trans": 0.9802259802818298,
+            "likely": 0.534000039100647,
+            "cities_cities_conj": 0.9190000295639038
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8410000205039978,
+            "neg_cities": 0.9900000691413879,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9604519605636597,
+            "neg_sp_en_trans": 0.9067796468734741,
+            "likely": 0.503000020980835,
+            "cities_cities_conj": 0.8950000405311584
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9399999976158142,
+            "cities_cities_conj": 0.98499995470047
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9149999618530273,
+            "cities_cities_conj": 1.0
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "8": 0.5563489336971984,
+      "12": 0.7831320218516119,
+      "13": 0.8077387694608081,
+      "16": 0.7495848468758843,
+      "20": 0.7148075889457356,
+      "24": 0.6860960731000612
+    }
+  },
+  "qwen2.5-7b": {
+    "probe_layer": 11,
+    "best_val_layer": 18,
+    "sweep_layers": [
+      7,
+      10,
+      11,
+      14,
+      18,
+      21
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.47740113735198975,
+        "MM": 0.8192090392112732,
+        "CCS": 0.596045196056366
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.5104915420101448,
+        "LR": 0.4863847062753683
+      },
+      "oracle_avg": {
+        "LR": 0.9731249883770943,
+        "MM": 0.9656249955296516
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.004000000189989805,
+            "larger_than": 0.36500000953674316,
+            "smaller_than": 0.6230000257492065,
+            "sp_en_trans": 0.901129961013794,
+            "neg_sp_en_trans": 0.09604519605636597,
+            "likely": 0.5139999985694885,
+            "cities_cities_conj": 0.734000027179718
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.2330000102519989,
+            "smaller_than": 0.7120000123977661,
+            "sp_en_trans": 0.8474576473236084,
+            "neg_sp_en_trans": 0.9322034120559692,
+            "likely": 0.5480000376701355,
+            "cities_cities_conj": 0.42000001668930054
+          },
+          "larger_than": {
+            "cities": 0.11700000613927841,
+            "neg_cities": 0.7350000143051147,
+            "larger_than": 1.0,
+            "smaller_than": 0.0,
+            "sp_en_trans": 0.11016949266195297,
+            "neg_sp_en_trans": 0.7598869800567627,
+            "likely": 0.4610000252723694,
+            "cities_cities_conj": 0.47200003266334534
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.5180000066757202,
+            "neg_cities": 0.6040000319480896,
+            "larger_than": 0.9799999594688416,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.47740113735198975,
+            "neg_sp_en_trans": 0.5,
+            "likely": 0.5370000004768372,
+            "cities_cities_conj": 0.4750000238418579
+          },
+          "likely": {
+            "cities": 0.4970000088214874,
+            "neg_cities": 0.5590000152587891,
+            "larger_than": 0.4350000321865082,
+            "smaller_than": 0.5300000309944153,
+            "sp_en_trans": 0.4858756959438324,
+            "neg_sp_en_trans": 0.49152541160583496,
+            "likely": 0.875,
+            "cities_cities_conj": 0.35600000619888306
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.01600000075995922,
+            "larger_than": 0.38200002908706665,
+            "smaller_than": 0.6370000243186951,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.07909604907035828,
+            "likely": 0.6840000152587891,
+            "cities_cities_conj": 0.8190000653266907
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.3020000159740448,
+            "smaller_than": 0.6830000281333923,
+            "sp_en_trans": 0.8841807842254639,
+            "neg_sp_en_trans": 0.8926553726196289,
+            "likely": 0.6830000281333923,
+            "cities_cities_conj": 0.4790000319480896
+          },
+          "larger_than": {
+            "cities": 0.2200000137090683,
+            "neg_cities": 0.46400001645088196,
+            "larger_than": 1.0,
+            "smaller_than": 0.09400000423192978,
+            "sp_en_trans": 0.14689265191555023,
+            "neg_sp_en_trans": 0.598870038986206,
+            "likely": 0.49000000953674316,
+            "cities_cities_conj": 0.48900002241134644
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.612000048160553,
+            "neg_cities": 0.398000031709671,
+            "larger_than": 0.9899999499320984,
+            "smaller_than": 0.9799999594688416,
+            "sp_en_trans": 0.8192090392112732,
+            "neg_sp_en_trans": 0.24858757853507996,
+            "likely": 0.4220000207424164,
+            "cities_cities_conj": 0.5660000443458557
+          },
+          "likely": {
+            "cities": 0.7380000352859497,
+            "neg_cities": 0.6240000128746033,
+            "larger_than": 0.4750000238418579,
+            "smaller_than": 0.4780000150203705,
+            "sp_en_trans": 0.8813559412956238,
+            "neg_sp_en_trans": 0.09322033822536469,
+            "likely": 0.8499999642372131,
+            "cities_cities_conj": 0.49800002574920654
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.98499995470047,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.2110000103712082,
+            "smaller_than": 0.7610000371932983,
+            "sp_en_trans": 0.903954803943634,
+            "neg_sp_en_trans": 0.9265536665916443,
+            "likely": 0.5470000505447388,
+            "cities_cities_conj": 0.4320000112056732
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.5110000371932983,
+            "neg_cities": 0.4660000205039978,
+            "larger_than": 0.5649999976158142,
+            "smaller_than": 0.5649999976158142,
+            "sp_en_trans": 0.596045196056366,
+            "neg_sp_en_trans": 0.1666666716337204,
+            "likely": 0.5200000405311584,
+            "cities_cities_conj": 0.46700000762939453
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8799999952316284,
+            "cities_cities_conj": 0.9199999570846558
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8499999642372131,
+            "cities_cities_conj": 0.875
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9237288236618042,
+        "MM": 0.9604519605636597,
+        "CCS": 0.9519774317741394
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.7924506437372077,
+        "LR": 0.801527332627412
+      },
+      "oracle_avg": {
+        "LR": 0.9906250014901161,
+        "MM": 0.974374994635582
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.6620000600814819,
+            "larger_than": 0.9930000305175781,
+            "smaller_than": 0.9890000224113464,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.0451977401971817,
+            "likely": 0.5410000085830688,
+            "cities_cities_conj": 0.9510000348091125
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 0.9970000386238098,
+            "smaller_than": 0.9930000305175781,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.9548022747039795,
+            "likely": 0.5790000557899475,
+            "cities_cities_conj": 0.9510000348091125
+          },
+          "larger_than": {
+            "cities": 0.9750000238418579,
+            "neg_cities": 0.9720000624656677,
+            "larger_than": 1.0,
+            "smaller_than": 0.987000048160553,
+            "sp_en_trans": 0.9519774317741394,
+            "neg_sp_en_trans": 0.7655367255210876,
+            "likely": 0.5730000138282776,
+            "cities_cities_conj": 0.940000057220459
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9530000686645508,
+            "neg_cities": 0.9750000238418579,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9237288236618042,
+            "neg_sp_en_trans": 0.8135592937469482,
+            "likely": 0.5450000166893005,
+            "cities_cities_conj": 0.9380000233650208
+          },
+          "likely": {
+            "cities": 0.9320000410079956,
+            "neg_cities": 0.3630000054836273,
+            "larger_than": 0.8050000667572021,
+            "smaller_than": 0.628000020980835,
+            "sp_en_trans": 0.9350282549858093,
+            "neg_sp_en_trans": 0.0903954803943634,
+            "likely": 0.9249999523162842,
+            "cities_cities_conj": 0.7310000061988831
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.7870000600814819,
+            "larger_than": 0.971000075340271,
+            "smaller_than": 0.9820000529289246,
+            "sp_en_trans": 0.9745762944221497,
+            "neg_sp_en_trans": 0.033898305147886276,
+            "likely": 0.6830000281333923,
+            "cities_cities_conj": 0.9310000538825989
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9860000610351562,
+            "smaller_than": 0.9770000576972961,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.805084764957428,
+            "likely": 0.6780000329017639,
+            "cities_cities_conj": 0.9350000619888306
+          },
+          "larger_than": {
+            "cities": 0.971000075340271,
+            "neg_cities": 0.9590000510215759,
+            "larger_than": 1.0,
+            "smaller_than": 0.9910000562667847,
+            "sp_en_trans": 0.9576271176338196,
+            "neg_sp_en_trans": 0.7062146663665771,
+            "likely": 0.5290000438690186,
+            "cities_cities_conj": 0.9360000491142273
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9730000495910645,
+            "neg_cities": 0.971000075340271,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9604519605636597,
+            "neg_sp_en_trans": 0.7118644118309021,
+            "likely": 0.5610000491142273,
+            "cities_cities_conj": 0.9380000233650208
+          },
+          "likely": {
+            "cities": 0.9120000600814819,
+            "neg_cities": 0.6220000386238098,
+            "larger_than": 0.5990000367164612,
+            "smaller_than": 0.7100000381469727,
+            "sp_en_trans": 0.8785310983657837,
+            "neg_sp_en_trans": 0.08192090690135956,
+            "likely": 0.7999999523162842,
+            "cities_cities_conj": 0.45000001788139343
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 0.9860000610351562,
+            "smaller_than": 0.9910000562667847,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9378530979156494,
+            "likely": 0.6480000019073486,
+            "cities_cities_conj": 0.9570000171661377
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9740000367164612,
+            "neg_cities": 0.9590000510215759,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9519774317741394,
+            "neg_sp_en_trans": 0.6440678238868713,
+            "likely": 0.6100000143051147,
+            "cities_cities_conj": 0.9480000734329224
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9300000071525574,
+            "cities_cities_conj": 0.9950000047683716
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.7999999523162842,
+            "cities_cities_conj": 0.9950000047683716
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "7": 0.5050599371845071,
+      "10": 0.5012141899629072,
+      "11": 0.5104915420101448,
+      "14": 0.7417901253158395,
+      "18": 0.7924506437372077,
+      "21": 0.7611981056856386
+    }
+  },
+  "qwen3-8b-base": {
+    "probe_layer": 14,
+    "best_val_layer": 18,
+    "sweep_layers": [
+      9,
+      14,
+      18,
+      22,
+      27
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9632768630981445,
+        "MM": 0.9237288236618042,
+        "CCS": 0.9632768630981445
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.5949796483654416,
+        "LR": 0.5780501843034995
+      },
+      "oracle_avg": {
+        "LR": 0.9868749901652336,
+        "MM": 0.9612499922513962
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.005000000353902578,
+            "larger_than": 0.8750000596046448,
+            "smaller_than": 0.9120000600814819,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.0028248587623238564,
+            "likely": 0.5950000286102295,
+            "cities_cities_conj": 0.7690000534057617
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.7200000286102295,
+            "smaller_than": 0.8580000400543213,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.909604549407959,
+            "likely": 0.5390000343322754,
+            "cities_cities_conj": 0.7630000114440918
+          },
+          "larger_than": {
+            "cities": 0.956000030040741,
+            "neg_cities": 0.06800000369548798,
+            "larger_than": 1.0,
+            "smaller_than": 0.009000000543892384,
+            "sp_en_trans": 0.9067796468734741,
+            "neg_sp_en_trans": 0.04237288236618042,
+            "likely": 0.5120000243186951,
+            "cities_cities_conj": 0.675000011920929
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9790000319480896,
+            "neg_cities": 0.15600000321865082,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9632768630981445,
+            "neg_sp_en_trans": 0.06497175246477127,
+            "likely": 0.5570000410079956,
+            "cities_cities_conj": 0.7720000147819519
+          },
+          "likely": {
+            "cities": 0.5760000348091125,
+            "neg_cities": 0.5570000410079956,
+            "larger_than": 0.4090000092983246,
+            "smaller_than": 0.4790000319480896,
+            "sp_en_trans": 0.9180790781974792,
+            "neg_sp_en_trans": 0.09604519605636597,
+            "likely": 0.949999988079071,
+            "cities_cities_conj": 0.44200003147125244
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.046000003814697266,
+            "larger_than": 0.9390000700950623,
+            "smaller_than": 0.9580000638961792,
+            "sp_en_trans": 0.991525411605835,
+            "neg_sp_en_trans": 0.0028248587623238564,
+            "likely": 0.6070000529289246,
+            "cities_cities_conj": 0.7420000433921814
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.7440000176429749,
+            "smaller_than": 0.9220000505447388,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.8644067645072937,
+            "likely": 0.6130000352859497,
+            "cities_cities_conj": 0.6370000243186951
+          },
+          "larger_than": {
+            "cities": 0.8950000405311584,
+            "neg_cities": 0.15900000929832458,
+            "larger_than": 1.0,
+            "smaller_than": 0.24500000476837158,
+            "sp_en_trans": 0.790960431098938,
+            "neg_sp_en_trans": 0.24011299014091492,
+            "likely": 0.5040000081062317,
+            "cities_cities_conj": 0.6450000405311584
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9280000329017639,
+            "neg_cities": 0.14300000667572021,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9237288236618042,
+            "neg_sp_en_trans": 0.1214689239859581,
+            "likely": 0.484000027179718,
+            "cities_cities_conj": 0.690000057220459
+          },
+          "likely": {
+            "cities": 0.6950000524520874,
+            "neg_cities": 0.4970000088214874,
+            "larger_than": 0.5570000410079956,
+            "smaller_than": 0.48900002241134644,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.06779661029577255,
+            "likely": 0.7599999904632568,
+            "cities_cities_conj": 0.5490000247955322
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9899999499320984,
+            "larger_than": 0.8420000672340393,
+            "smaller_than": 0.9320000410079956,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.9689265489578247,
+            "likely": 0.5430000424385071,
+            "cities_cities_conj": 0.6720000505447388
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9780000448226929,
+            "neg_cities": 0.21800000965595245,
+            "larger_than": 1.0,
+            "smaller_than": 0.9950000047683716,
+            "sp_en_trans": 0.9632768630981445,
+            "neg_sp_en_trans": 0.0903954803943634,
+            "likely": 0.5980000495910645,
+            "cities_cities_conj": 0.7360000610351562
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9549999833106995,
+            "cities_cities_conj": 0.949999988079071
+          },
+          "MMProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9899999499320984,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.7599999904632568,
+            "cities_cities_conj": 0.9449999928474426
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9887005686759949,
+        "MM": 0.9774011373519897,
+        "CCS": 0.9887005686759949
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8119950606064363,
+        "LR": 0.8374900104421558
+      },
+      "oracle_avg": {
+        "LR": 0.9862499907612801,
+        "MM": 0.9608538597822189
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9130000472068787,
+            "larger_than": 1.0,
+            "smaller_than": 0.9830000400543213,
+            "sp_en_trans": 0.991525411605835,
+            "neg_sp_en_trans": 0.2711864411830902,
+            "likely": 0.6530000567436218,
+            "cities_cities_conj": 0.8720000386238098
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.999000072479248,
+            "smaller_than": 0.9790000319480896,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.9237288236618042,
+            "likely": 0.6070000529289246,
+            "cities_cities_conj": 0.89000004529953
+          },
+          "larger_than": {
+            "cities": 0.9830000400543213,
+            "neg_cities": 0.9960000514984131,
+            "larger_than": 1.0,
+            "smaller_than": 0.9980000257492065,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.8163841962814331,
+            "likely": 0.597000002861023,
+            "cities_cities_conj": 0.8410000205039978
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9780000448226929,
+            "neg_cities": 0.9950000643730164,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.7627118825912476,
+            "likely": 0.5690000057220459,
+            "cities_cities_conj": 0.8540000319480896
+          },
+          "likely": {
+            "cities": 0.8680000305175781,
+            "neg_cities": 0.7490000128746033,
+            "larger_than": 0.7330000400543213,
+            "smaller_than": 0.8040000200271606,
+            "sp_en_trans": 0.9435028433799744,
+            "neg_sp_en_trans": 0.4378530979156494,
+            "likely": 0.9350000023841858,
+            "cities_cities_conj": 0.6660000085830688
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.940000057220459,
+            "larger_than": 1.0,
+            "smaller_than": 0.9940000176429749,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.23163841664791107,
+            "likely": 0.6630000472068787,
+            "cities_cities_conj": 0.8320000171661377
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 0.9960000514984131,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.9124293923377991,
+            "likely": 0.6600000262260437,
+            "cities_cities_conj": 0.843000054359436
+          },
+          "larger_than": {
+            "cities": 0.9780000448226929,
+            "neg_cities": 0.9960000514984131,
+            "larger_than": 1.0,
+            "smaller_than": 0.999000072479248,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 0.8785310983657837,
+            "likely": 0.6680000424385071,
+            "cities_cities_conj": 0.8420000672340393
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9800000190734863,
+            "neg_cities": 0.9910000562667847,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 0.8079096078872681,
+            "likely": 0.6130000352859497,
+            "cities_cities_conj": 0.8400000333786011
+          },
+          "likely": {
+            "cities": 0.7910000085830688,
+            "neg_cities": 0.5530000329017639,
+            "larger_than": 0.7630000114440918,
+            "smaller_than": 0.4780000150203705,
+            "sp_en_trans": 0.9435028433799744,
+            "neg_sp_en_trans": 0.09604519605636597,
+            "likely": 0.73499995470047,
+            "cities_cities_conj": 0.5990000367164612
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 0.9960000514984131,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.9435028433799744,
+            "likely": 0.5990000367164612,
+            "cities_cities_conj": 0.8690000176429749
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9850000739097595,
+            "neg_cities": 0.9950000643730164,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.7401130199432373,
+            "likely": 0.656000018119812,
+            "cities_cities_conj": 0.8450000286102295
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9199999570846558,
+            "cities_cities_conj": 0.9799999594688416
+          },
+          "MMProbe": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9718309640884399,
+            "likely": 0.73499995470047,
+            "cities_cities_conj": 0.9950000047683716
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "9": 0.5062556212598627,
+      "14": 0.5949796483654416,
+      "18": 0.8119950606064363,
+      "22": 0.7955071284915461,
+      "27": 0.7259799941922679
+    }
+  },
+  "olmo-3-7b": {
+    "probe_layer": 13,
+    "best_val_layer": 20,
+    "sweep_layers": [
+      8,
+      12,
+      13,
+      16,
+      20,
+      24
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.7372881174087524,
+        "MM": 0.895480215549469,
+        "CCS": 0.6920903921127319
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.6038048443469134,
+        "LR": 0.5860500067020907
+      },
+      "oracle_avg": {
+        "LR": 0.9127288460731506,
+        "MM": 0.7469894215464592
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9549999833106995,
+            "neg_cities": 0.0560000017285347,
+            "larger_than": 0.5360000133514404,
+            "smaller_than": 0.7360000610351562,
+            "sp_en_trans": 0.6920903921127319,
+            "neg_sp_en_trans": 0.1384180784225464,
+            "likely": 0.46300002932548523,
+            "cities_cities_conj": 0.8080000281333923
+          },
+          "cities+neg_cities": {
+            "cities": 0.8199999928474426,
+            "neg_cities": 0.875,
+            "larger_than": 0.6970000267028809,
+            "smaller_than": 0.7120000123977661,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.6920903921127319,
+            "likely": 0.5590000152587891,
+            "cities_cities_conj": 0.8080000281333923
+          },
+          "larger_than": {
+            "cities": 0.5320000052452087,
+            "neg_cities": 0.5020000338554382,
+            "larger_than": 0.7999999523162842,
+            "smaller_than": 0.1730000078678131,
+            "sp_en_trans": 0.8220338821411133,
+            "neg_sp_en_trans": 0.5819209218025208,
+            "likely": 0.44600000977516174,
+            "cities_cities_conj": 0.8180000185966492
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.6270000338554382,
+            "neg_cities": 0.5550000071525574,
+            "larger_than": 0.9749999642372131,
+            "smaller_than": 0.949999988079071,
+            "sp_en_trans": 0.7372881174087524,
+            "neg_sp_en_trans": 0.5028248429298401,
+            "likely": 0.5330000519752502,
+            "cities_cities_conj": 0.8340000510215759
+          },
+          "likely": {
+            "cities": 0.49900001287460327,
+            "neg_cities": 0.5020000338554382,
+            "larger_than": 0.46700000762939453,
+            "smaller_than": 0.5260000228881836,
+            "sp_en_trans": 0.5875706076622009,
+            "neg_sp_en_trans": 0.7655367255210876,
+            "likely": 0.8949999809265137,
+            "cities_cities_conj": 0.445000022649765
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.5799999833106995,
+            "neg_cities": 0.5,
+            "larger_than": 0.5550000071525574,
+            "smaller_than": 0.581000030040741,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.07909604907035828,
+            "likely": 0.6050000190734863,
+            "cities_cities_conj": 0.8380000591278076
+          },
+          "cities+neg_cities": {
+            "cities": 0.4949999749660492,
+            "neg_cities": 0.4949999749660492,
+            "larger_than": 0.6420000195503235,
+            "smaller_than": 0.7520000338554382,
+            "sp_en_trans": 0.9887005686759949,
+            "neg_sp_en_trans": 0.7457627058029175,
+            "likely": 0.6390000581741333,
+            "cities_cities_conj": 0.8550000190734863
+          },
+          "larger_than": {
+            "cities": 0.49800002574920654,
+            "neg_cities": 0.5020000338554382,
+            "larger_than": 0.5199999809265137,
+            "smaller_than": 0.21400001645088196,
+            "sp_en_trans": 0.8192090392112732,
+            "neg_sp_en_trans": 0.3163841962814331,
+            "likely": 0.46400001645088196,
+            "cities_cities_conj": 0.8440000414848328
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.5640000104904175,
+            "neg_cities": 0.5950000286102295,
+            "larger_than": 0.47999998927116394,
+            "smaller_than": 0.5199999809265137,
+            "sp_en_trans": 0.895480215549469,
+            "neg_sp_en_trans": 0.38700565695762634,
+            "likely": 0.5270000100135803,
+            "cities_cities_conj": 0.8460000157356262
+          },
+          "likely": {
+            "cities": 0.49800002574920654,
+            "neg_cities": 0.5020000338554382,
+            "larger_than": 0.4910000264644623,
+            "smaller_than": 0.531000018119812,
+            "sp_en_trans": 0.8559321761131287,
+            "neg_sp_en_trans": 0.23728813230991364,
+            "likely": 0.824999988079071,
+            "cities_cities_conj": 0.5690000057220459
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.4749999940395355,
+            "neg_cities": 0.4749999940395355,
+            "larger_than": 0.3760000169277191,
+            "smaller_than": 0.5330000519752502,
+            "sp_en_trans": 0.7740113139152527,
+            "neg_sp_en_trans": 0.40112993121147156,
+            "likely": 0.5710000395774841,
+            "cities_cities_conj": 0.5840000510215759
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.6470000147819519,
+            "neg_cities": 0.5840000510215759,
+            "larger_than": 0.9899999499320984,
+            "smaller_than": 0.9649999737739563,
+            "sp_en_trans": 0.6920903921127319,
+            "neg_sp_en_trans": 0.49152541160583496,
+            "likely": 0.534000039100647,
+            "cities_cities_conj": 0.8410000205039978
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9549999833106995,
+            "neg_cities": 0.9699999690055847,
+            "larger_than": 0.7999999523162842,
+            "smaller_than": 0.7949999570846558,
+            "sp_en_trans": 0.98591548204422,
+            "neg_sp_en_trans": 0.98591548204422,
+            "likely": 0.8949999809265137,
+            "cities_cities_conj": 0.9149999618530273
+          },
+          "MMProbe": {
+            "cities": 0.5799999833106995,
+            "neg_cities": 0.5849999785423279,
+            "larger_than": 0.5199999809265137,
+            "smaller_than": 0.5199999809265137,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.98591548204422,
+            "likely": 0.824999988079071,
+            "cities_cities_conj": 0.9599999785423279
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9463276863098145,
+        "MM": 0.9350282549858093,
+        "CCS": 0.9632768630981445
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.7345394839843115,
+        "LR": 0.7653247903693806
+      },
+      "oracle_avg": {
+        "LR": 0.963353842496872,
+        "MM": 0.801249984651804
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9749999642372131,
+            "neg_cities": 0.49800002574920654,
+            "larger_than": 0.9720000624656677,
+            "smaller_than": 0.9660000205039978,
+            "sp_en_trans": 0.9293785095214844,
+            "neg_sp_en_trans": 0.8135592937469482,
+            "likely": 0.5410000085830688,
+            "cities_cities_conj": 0.9190000295639038
+          },
+          "cities+neg_cities": {
+            "cities": 0.9649999737739563,
+            "neg_cities": 0.9899999499320984,
+            "larger_than": 0.9800000190734863,
+            "smaller_than": 0.9750000238418579,
+            "sp_en_trans": 0.9661017060279846,
+            "neg_sp_en_trans": 0.9887005686759949,
+            "likely": 0.5270000100135803,
+            "cities_cities_conj": 0.893000066280365
+          },
+          "larger_than": {
+            "cities": 0.7640000581741333,
+            "neg_cities": 0.5350000262260437,
+            "larger_than": 0.9799999594688416,
+            "smaller_than": 0.9700000286102295,
+            "sp_en_trans": 0.9067796468734741,
+            "neg_sp_en_trans": 0.9378530979156494,
+            "likely": 0.5410000085830688,
+            "cities_cities_conj": 0.9240000247955322
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.7550000548362732,
+            "neg_cities": 0.49900001287460327,
+            "larger_than": 0.9799999594688416,
+            "smaller_than": 0.98499995470047,
+            "sp_en_trans": 0.9463276863098145,
+            "neg_sp_en_trans": 0.909604549407959,
+            "likely": 0.5920000076293945,
+            "cities_cities_conj": 0.9200000166893005
+          },
+          "likely": {
+            "cities": 0.49800002574920654,
+            "neg_cities": 0.4870000183582306,
+            "larger_than": 0.5270000100135803,
+            "smaller_than": 0.7120000123977661,
+            "sp_en_trans": 0.7118644118309021,
+            "neg_sp_en_trans": 0.5395480394363403,
+            "likely": 0.8499999642372131,
+            "cities_cities_conj": 0.6110000014305115
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.6599999666213989,
+            "neg_cities": 0.49800002574920654,
+            "larger_than": 0.9570000171661377,
+            "smaller_than": 0.9540000557899475,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.21468926966190338,
+            "likely": 0.5670000314712524,
+            "cities_cities_conj": 0.8680000305175781
+          },
+          "cities+neg_cities": {
+            "cities": 0.9199999570846558,
+            "neg_cities": 0.7599999904632568,
+            "larger_than": 0.9630000591278076,
+            "smaller_than": 0.9520000219345093,
+            "sp_en_trans": 0.9322034120559692,
+            "neg_sp_en_trans": 0.8531073331832886,
+            "likely": 0.5649999976158142,
+            "cities_cities_conj": 0.8740000128746033
+          },
+          "larger_than": {
+            "cities": 0.9700000286102295,
+            "neg_cities": 0.8670000433921814,
+            "larger_than": 0.47999998927116394,
+            "smaller_than": 0.968000054359436,
+            "sp_en_trans": 0.9152542352676392,
+            "neg_sp_en_trans": 0.7740113139152527,
+            "likely": 0.581000030040741,
+            "cities_cities_conj": 0.9130000472068787
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.6550000309944153,
+            "neg_cities": 0.49900001287460327,
+            "larger_than": 0.4899999797344208,
+            "smaller_than": 0.7699999809265137,
+            "sp_en_trans": 0.9350282549858093,
+            "neg_sp_en_trans": 0.7966101765632629,
+            "likely": 0.597000002861023,
+            "cities_cities_conj": 0.9200000166893005
+          },
+          "likely": {
+            "cities": 0.49800002574920654,
+            "neg_cities": 0.5020000338554382,
+            "larger_than": 0.5630000233650208,
+            "smaller_than": 0.5470000505447388,
+            "sp_en_trans": 0.7937853336334229,
+            "neg_sp_en_trans": 0.26836156845092773,
+            "likely": 0.8299999833106995,
+            "cities_cities_conj": 0.5070000290870667
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.4749999940395355,
+            "neg_cities": 0.4749999940395355,
+            "larger_than": 0.8670000433921814,
+            "smaller_than": 0.8510000109672546,
+            "sp_en_trans": 0.44915252923965454,
+            "neg_sp_en_trans": 0.12711864709854126,
+            "likely": 0.49900001287460327,
+            "cities_cities_conj": 0.48500001430511475
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.7900000214576721,
+            "neg_cities": 0.49900001287460327,
+            "larger_than": 0.9799999594688416,
+            "smaller_than": 0.98499995470047,
+            "sp_en_trans": 0.9632768630981445,
+            "neg_sp_en_trans": 0.9293785095214844,
+            "likely": 0.5879999995231628,
+            "cities_cities_conj": 0.9170000553131104
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9749999642372131,
+            "neg_cities": 0.98499995470047,
+            "larger_than": 0.9799999594688416,
+            "smaller_than": 0.98499995470047,
+            "sp_en_trans": 0.98591548204422,
+            "neg_sp_en_trans": 0.98591548204422,
+            "likely": 0.85999995470047,
+            "cities_cities_conj": 0.949999988079071
+          },
+          "MMProbe": {
+            "cities": 0.6599999666213989,
+            "neg_cities": 0.7749999761581421,
+            "larger_than": 0.47999998927116394,
+            "smaller_than": 0.6899999976158142,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8299999833106995,
+            "cities_cities_conj": 0.9749999642372131
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "8": 0.496426315018625,
+      "12": 0.5567480068315159,
+      "13": 0.6038048443469134,
+      "16": 0.6584059474143115,
+      "20": 0.7345394839843115,
+      "24": 0.6835434192960913
+    }
+  },
+  "qwen2.5-7b-instruct": {
+    "probe_layer": 11,
+    "best_val_layer": 18,
+    "sweep_layers": [
+      7,
+      10,
+      11,
+      14,
+      18,
+      21
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.8079096078872681,
+        "MM": 0.9632768630981445,
+        "CCS": 0.7514124512672424
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.5242427839248469,
+        "LR": 0.5139135566935169
+      },
+      "oracle_avg": {
+        "LR": 0.9756249934434891,
+        "MM": 0.9737499952316284
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.004000000189989805,
+            "larger_than": 0.35200002789497375,
+            "smaller_than": 0.6680000424385071,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.053672317415475845,
+            "likely": 0.5600000023841858,
+            "cities_cities_conj": 0.7400000095367432
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 1.0,
+            "larger_than": 0.3110000193119049,
+            "smaller_than": 0.7330000400543213,
+            "sp_en_trans": 0.9463276863098145,
+            "neg_sp_en_trans": 0.9576271176338196,
+            "likely": 0.5070000290870667,
+            "cities_cities_conj": 0.4780000150203705
+          },
+          "larger_than": {
+            "cities": 0.0950000062584877,
+            "neg_cities": 0.6550000309944153,
+            "larger_than": 1.0,
+            "smaller_than": 0.0,
+            "sp_en_trans": 0.053672317415475845,
+            "neg_sp_en_trans": 0.7542372941970825,
+            "likely": 0.47700002789497375,
+            "cities_cities_conj": 0.45900002121925354
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8250000476837158,
+            "neg_cities": 0.8090000152587891,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.8079096078872681,
+            "neg_sp_en_trans": 0.604519784450531,
+            "likely": 0.531000018119812,
+            "cities_cities_conj": 0.5130000114440918
+          },
+          "likely": {
+            "cities": 0.33400002121925354,
+            "neg_cities": 0.5580000281333923,
+            "larger_than": 0.5220000147819519,
+            "smaller_than": 0.44300001859664917,
+            "sp_en_trans": 0.4887005686759949,
+            "neg_sp_en_trans": 0.44632768630981445,
+            "likely": 0.8849999904632568,
+            "cities_cities_conj": 0.3230000138282776
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.013000000268220901,
+            "larger_than": 0.3500000238418579,
+            "smaller_than": 0.7280000448226929,
+            "sp_en_trans": 0.9774011373519897,
+            "neg_sp_en_trans": 0.04802259802818298,
+            "likely": 0.6380000114440918,
+            "cities_cities_conj": 0.8090000152587891
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 1.0,
+            "larger_than": 0.3540000021457672,
+            "smaller_than": 0.6930000185966492,
+            "sp_en_trans": 0.9632768630981445,
+            "neg_sp_en_trans": 0.9237288236618042,
+            "likely": 0.6730000376701355,
+            "cities_cities_conj": 0.5170000195503235
+          },
+          "larger_than": {
+            "cities": 0.1120000034570694,
+            "neg_cities": 0.5540000200271606,
+            "larger_than": 1.0,
+            "smaller_than": 0.04400000348687172,
+            "sp_en_trans": 0.053672317415475845,
+            "neg_sp_en_trans": 0.709039568901062,
+            "likely": 0.5139999985694885,
+            "cities_cities_conj": 0.4350000321865082
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8280000686645508,
+            "neg_cities": 0.359000027179718,
+            "larger_than": 0.9899999499320984,
+            "smaller_than": 0.9899999499320984,
+            "sp_en_trans": 0.9632768630981445,
+            "neg_sp_en_trans": 0.17796610295772552,
+            "likely": 0.4390000104904175,
+            "cities_cities_conj": 0.6320000290870667
+          },
+          "likely": {
+            "cities": 0.7140000462532043,
+            "neg_cities": 0.703000009059906,
+            "larger_than": 0.4930000305175781,
+            "smaller_than": 0.4830000102519989,
+            "sp_en_trans": 0.8728813529014587,
+            "neg_sp_en_trans": 0.08474576473236084,
+            "likely": 0.8899999856948853,
+            "cities_cities_conj": 0.4410000145435333
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.98499995470047,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.4010000228881836,
+            "smaller_than": 0.6510000228881836,
+            "sp_en_trans": 0.9406779408454895,
+            "neg_sp_en_trans": 0.9548022747039795,
+            "likely": 0.484000027179718,
+            "cities_cities_conj": 0.39500001072883606
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.7150000333786011,
+            "neg_cities": 0.4140000343322754,
+            "larger_than": 0.5949999690055847,
+            "smaller_than": 0.5949999690055847,
+            "sp_en_trans": 0.7514124512672424,
+            "neg_sp_en_trans": 0.29378530383110046,
+            "likely": 0.5270000100135803,
+            "cities_cities_conj": 0.503000020980835
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8899999856948853,
+            "cities_cities_conj": 0.9249999523162842
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8899999856948853,
+            "cities_cities_conj": 0.9049999713897705
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9830508232116699,
+        "MM": 0.9802259802818298,
+        "CCS": 0.9858757257461548
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8500291298736226,
+        "LR": 0.8170020798164787
+      },
+      "oracle_avg": {
+        "LR": 0.9893749952316284,
+        "MM": 0.9806249961256981
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.8070000410079956,
+            "larger_than": 0.9960000514984131,
+            "smaller_than": 0.9880000352859497,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.03672316297888756,
+            "likely": 0.47300001978874207,
+            "cities_cities_conj": 0.9570000171661377
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9980000257492065,
+            "smaller_than": 0.9920000433921814,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9689265489578247,
+            "likely": 0.5260000228881836,
+            "cities_cities_conj": 0.9600000381469727
+          },
+          "larger_than": {
+            "cities": 0.9910000562667847,
+            "neg_cities": 0.9700000286102295,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 0.9820000529289246,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.9265536665916443,
+            "likely": 0.5509999990463257,
+            "cities_cities_conj": 0.9430000185966492
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.987000048160553,
+            "neg_cities": 0.9740000367164612,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9830508232116699,
+            "neg_sp_en_trans": 0.20056496560573578,
+            "likely": 0.5420000553131104,
+            "cities_cities_conj": 0.9530000686645508
+          },
+          "likely": {
+            "cities": 0.9470000267028809,
+            "neg_cities": 0.4960000216960907,
+            "larger_than": 0.9830000400543213,
+            "smaller_than": 0.8760000467300415,
+            "sp_en_trans": 0.9717513918876648,
+            "neg_sp_en_trans": 0.06214689463376999,
+            "likely": 0.9249999523162842,
+            "cities_cities_conj": 0.9250000715255737
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9080000519752502,
+            "larger_than": 0.9970000386238098,
+            "smaller_than": 0.9920000433921814,
+            "sp_en_trans": 0.9830508232116699,
+            "neg_sp_en_trans": 0.15536722540855408,
+            "likely": 0.6110000014305115,
+            "cities_cities_conj": 0.9460000395774841
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9980000257492065,
+            "smaller_than": 0.9940000176429749,
+            "sp_en_trans": 0.9830508232116699,
+            "neg_sp_en_trans": 0.9067796468734741,
+            "likely": 0.6850000619888306,
+            "cities_cities_conj": 0.9530000686645508
+          },
+          "larger_than": {
+            "cities": 0.9900000691413879,
+            "neg_cities": 0.9620000720024109,
+            "larger_than": 1.0,
+            "smaller_than": 0.9940000176429749,
+            "sp_en_trans": 0.9661017060279846,
+            "neg_sp_en_trans": 0.8361582159996033,
+            "likely": 0.628000020980835,
+            "cities_cities_conj": 0.9490000605583191
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9910000562667847,
+            "neg_cities": 0.9650000333786011,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.8418079018592834,
+            "likely": 0.6340000033378601,
+            "cities_cities_conj": 0.9510000348091125
+          },
+          "likely": {
+            "cities": 0.8530000448226929,
+            "neg_cities": 0.8740000128746033,
+            "larger_than": 0.8960000276565552,
+            "smaller_than": 0.8070000410079956,
+            "sp_en_trans": 0.9152542352676392,
+            "neg_sp_en_trans": 0.22316384315490723,
+            "likely": 0.8549999594688416,
+            "cities_cities_conj": 0.6820000410079956
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9980000257492065,
+            "smaller_than": 0.9950000643730164,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9689265489578247,
+            "likely": 0.6000000238418579,
+            "cities_cities_conj": 0.9570000171661377
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9910000562667847,
+            "neg_cities": 0.9730000495910645,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.8983050584793091,
+            "likely": 0.6290000081062317,
+            "cities_cities_conj": 0.9520000219345093
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9249999523162842,
+            "cities_cities_conj": 1.0
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8549999594688416,
+            "cities_cities_conj": 0.9950000047683716
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "7": 0.5031689940528437,
+      "10": 0.5018685324625536,
+      "11": 0.5242427839248469,
+      "14": 0.7733530507168986,
+      "18": 0.8500291298736226,
+      "21": 0.8403198384877407
+    }
+  },
+  "qwen3.5-9b-base": {
+    "probe_layer": 13,
+    "best_val_layer": 16,
+    "sweep_layers": [
+      8,
+      12,
+      13,
+      16,
+      20,
+      24
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.9971751570701599,
+        "MM": 1.0,
+        "CCS": 0.9971751570701599
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.7418704233837851,
+        "LR": 0.7368457714998813
+      },
+      "oracle_avg": {
+        "LR": 0.9874999895691872,
+        "MM": 0.9749999940395355
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9070000648498535,
+            "larger_than": 0.9390000700950623,
+            "smaller_than": 0.9810000658035278,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.5536723136901855,
+            "likely": 0.5770000219345093,
+            "cities_cities_conj": 0.9260000586509705
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.8510000109672546,
+            "smaller_than": 0.9610000252723694,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9887005686759949,
+            "likely": 0.5670000314712524,
+            "cities_cities_conj": 0.9000000357627869
+          },
+          "larger_than": {
+            "cities": 0.9430000185966492,
+            "neg_cities": 0.31700000166893005,
+            "larger_than": 1.0,
+            "smaller_than": 0.7100000381469727,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.014124293811619282,
+            "likely": 0.578000009059906,
+            "cities_cities_conj": 0.8750000596046448
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.987000048160553,
+            "neg_cities": 0.8260000348091125,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.033898305147886276,
+            "likely": 0.5480000376701355,
+            "cities_cities_conj": 0.8970000147819519
+          },
+          "likely": {
+            "cities": 0.6180000305175781,
+            "neg_cities": 0.7150000333786011,
+            "larger_than": 0.22800001502037048,
+            "smaller_than": 0.7130000591278076,
+            "sp_en_trans": 0.8700565099716187,
+            "neg_sp_en_trans": 0.8502824902534485,
+            "likely": 0.9300000071525574,
+            "cities_cities_conj": 0.4440000355243683
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.8580000400543213,
+            "larger_than": 0.9300000667572021,
+            "smaller_than": 0.9660000205039978,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.0762711837887764,
+            "likely": 0.7090000510215759,
+            "cities_cities_conj": 0.8840000629425049
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.8110000491142273,
+            "smaller_than": 0.9130000472068787,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.8389830589294434,
+            "likely": 0.6610000133514404,
+            "cities_cities_conj": 0.8850000500679016
+          },
+          "larger_than": {
+            "cities": 0.9820000529289246,
+            "neg_cities": 0.8720000386238098,
+            "larger_than": 1.0,
+            "smaller_than": 0.6000000238418579,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.12994350492954254,
+            "likely": 0.5370000004768372,
+            "cities_cities_conj": 0.9140000343322754
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.987000048160553,
+            "neg_cities": 0.956000030040741,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.12429378926753998,
+            "likely": 0.5540000200271606,
+            "cities_cities_conj": 0.9200000166893005
+          },
+          "likely": {
+            "cities": 0.937000036239624,
+            "neg_cities": 0.4660000205039978,
+            "larger_than": 0.5509999990463257,
+            "smaller_than": 0.578000009059906,
+            "sp_en_trans": 0.9802259802818298,
+            "neg_sp_en_trans": 0.395480215549469,
+            "likely": 0.8199999928474426,
+            "cities_cities_conj": 0.4740000367164612
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.8050000667572021,
+            "smaller_than": 0.9670000672340393,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.5940000414848328,
+            "cities_cities_conj": 0.878000020980835
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.987000048160553,
+            "neg_cities": 0.9140000343322754,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 0.9950000047683716,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.11299435049295425,
+            "likely": 0.5820000171661377,
+            "cities_cities_conj": 0.9000000357627869
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9249999523162842,
+            "cities_cities_conj": 0.98499995470047
+          },
+          "MMProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8199999928474426,
+            "cities_cities_conj": 0.9899999499320984
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 1.0,
+        "MM": 0.9943503141403198,
+        "CCS": 1.0
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8831941738273158,
+        "LR": 0.8074932626702569
+      },
+      "oracle_avg": {
+        "LR": 0.9881249889731407,
+        "MM": 0.9774999916553497
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9750000238418579,
+            "larger_than": 0.9980000257492065,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.7768361568450928,
+            "likely": 0.5540000200271606,
+            "cities_cities_conj": 0.8470000624656677
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.999000072479248,
+            "smaller_than": 0.999000072479248,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.991525411605835,
+            "likely": 0.5180000066757202,
+            "cities_cities_conj": 0.8880000710487366
+          },
+          "larger_than": {
+            "cities": 0.9970000386238098,
+            "neg_cities": 0.9820000529289246,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.909604549407959,
+            "likely": 0.6100000143051147,
+            "cities_cities_conj": 0.8410000205039978
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9970000386238098,
+            "neg_cities": 0.9820000529289246,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.901129961013794,
+            "likely": 0.6540000438690186,
+            "cities_cities_conj": 0.843000054359436
+          },
+          "likely": {
+            "cities": 0.6850000619888306,
+            "neg_cities": 0.34300002455711365,
+            "larger_than": 0.1680000126361847,
+            "smaller_than": 0.22700001299381256,
+            "sp_en_trans": 0.9491525292396545,
+            "neg_sp_en_trans": 0.4350282549858093,
+            "likely": 0.949999988079071,
+            "cities_cities_conj": 0.5770000219345093
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9540000557899475,
+            "larger_than": 0.9950000643730164,
+            "smaller_than": 0.9980000257492065,
+            "sp_en_trans": 0.9971751570701599,
+            "neg_sp_en_trans": 0.5564971566200256,
+            "likely": 0.7350000143051147,
+            "cities_cities_conj": 0.8270000219345093
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.9930000305175781,
+            "smaller_than": 0.9980000257492065,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.9378530979156494,
+            "likely": 0.7320000529289246,
+            "cities_cities_conj": 0.831000030040741
+          },
+          "larger_than": {
+            "cities": 0.9910000562667847,
+            "neg_cities": 0.9690000414848328,
+            "larger_than": 1.0,
+            "smaller_than": 0.9980000257492065,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.8983050584793091,
+            "likely": 0.7330000400543213,
+            "cities_cities_conj": 0.8030000329017639
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9920000433921814,
+            "neg_cities": 0.9690000414848328,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.9943503141403198,
+            "neg_sp_en_trans": 0.8926553726196289,
+            "likely": 0.7250000238418579,
+            "cities_cities_conj": 0.8080000281333923
+          },
+          "likely": {
+            "cities": 0.9320000410079956,
+            "neg_cities": 0.7550000548362732,
+            "larger_than": 0.9980000257492065,
+            "smaller_than": 0.9950000643730164,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.612994372844696,
+            "likely": 0.8399999737739563,
+            "cities_cities_conj": 0.550000011920929
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.999000072479248,
+            "smaller_than": 0.9980000257492065,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.9971751570701599,
+            "likely": 0.578000009059906,
+            "cities_cities_conj": 0.8440000414848328
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.9970000386238098,
+            "neg_cities": 0.9820000529289246,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 0.8785310983657837,
+            "likely": 0.593000054359436,
+            "cities_cities_conj": 0.8460000157356262
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9249999523162842,
+            "cities_cities_conj": 0.9899999499320984
+          },
+          "MMProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8399999737739563,
+            "cities_cities_conj": 0.9899999499320984
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "8": 0.567232515550021,
+      "12": 0.6788368687936754,
+      "13": 0.7418704233837851,
+      "16": 0.8831941738273158,
+      "20": 0.8772280676798387,
+      "24": 0.8434160496249343
+    }
+  },
+  "gemma-4-12b": {
+    "probe_layer": 19,
+    "best_val_layer": 36,
+    "sweep_layers": [
+      12,
+      18,
+      19,
+      24,
+      30,
+      36
+    ],
+    "at_probe_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.44915252923965454,
+        "MM": 0.3926553726196289,
+        "CCS": 0.3757062256336212
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.4822290886870839,
+        "LR": 0.5261272221881276
+      },
+      "oracle_avg": {
+        "LR": 0.9774999916553497,
+        "MM": 0.953125
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.0010000000474974513,
+            "larger_than": 0.42900002002716064,
+            "smaller_than": 0.5400000214576721,
+            "sp_en_trans": 0.9745762944221497,
+            "neg_sp_en_trans": 0.033898305147886276,
+            "likely": 0.4780000150203705,
+            "cities_cities_conj": 0.7380000352859497
+          },
+          "cities+neg_cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.3880000114440918,
+            "smaller_than": 0.6670000553131104,
+            "sp_en_trans": 0.9689265489578247,
+            "neg_sp_en_trans": 0.805084764957428,
+            "likely": 0.5450000166893005,
+            "cities_cities_conj": 0.6630000472068787
+          },
+          "larger_than": {
+            "cities": 0.581000030040741,
+            "neg_cities": 0.5520000457763672,
+            "larger_than": 1.0,
+            "smaller_than": 0.0,
+            "sp_en_trans": 0.5536723136901855,
+            "neg_sp_en_trans": 0.4717514216899872,
+            "likely": 0.5450000166893005,
+            "cities_cities_conj": 0.5190000534057617
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.23500001430511475,
+            "neg_cities": 0.7220000624656677,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 0.9899999499320984,
+            "sp_en_trans": 0.44915252923965454,
+            "neg_sp_en_trans": 0.694915235042572,
+            "likely": 0.47300001978874207,
+            "cities_cities_conj": 0.5490000247955322
+          },
+          "likely": {
+            "cities": 0.6950000524520874,
+            "neg_cities": 0.6470000147819519,
+            "larger_than": 0.4300000071525574,
+            "smaller_than": 0.5649999976158142,
+            "sp_en_trans": 0.8502824902534485,
+            "neg_sp_en_trans": 0.2429378479719162,
+            "likely": 0.9199999570846558,
+            "cities_cities_conj": 0.35500001907348633
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.05700000375509262,
+            "larger_than": 0.562000036239624,
+            "smaller_than": 0.44200003147125244,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.016949152573943138,
+            "likely": 0.4750000238418579,
+            "cities_cities_conj": 0.6170000433921814
+          },
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.5450000166893005,
+            "smaller_than": 0.5070000290870667,
+            "sp_en_trans": 0.9858757257461548,
+            "neg_sp_en_trans": 0.0762711837887764,
+            "likely": 0.4830000102519989,
+            "cities_cities_conj": 0.5300000309944153
+          },
+          "larger_than": {
+            "cities": 0.7200000286102295,
+            "neg_cities": 0.27900001406669617,
+            "larger_than": 1.0,
+            "smaller_than": 0.09400000423192978,
+            "sp_en_trans": 0.2909604609012604,
+            "neg_sp_en_trans": 0.8107344508171082,
+            "likely": 0.4490000307559967,
+            "cities_cities_conj": 0.4830000102519989
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.11400000751018524,
+            "neg_cities": 0.8610000610351562,
+            "larger_than": 0.9950000047683716,
+            "smaller_than": 0.9699999690055847,
+            "sp_en_trans": 0.3926553726196289,
+            "neg_sp_en_trans": 0.6299434900283813,
+            "likely": 0.5100000500679016,
+            "cities_cities_conj": 0.484000027179718
+          },
+          "likely": {
+            "cities": 0.164000004529953,
+            "neg_cities": 0.7330000400543213,
+            "larger_than": 0.39100003242492676,
+            "smaller_than": 0.625,
+            "sp_en_trans": 0.6073446273803711,
+            "neg_sp_en_trans": 0.5169491767883301,
+            "likely": 0.7549999952316284,
+            "cities_cities_conj": 0.4750000238418579
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 0.9899999499320984,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 0.3460000157356262,
+            "smaller_than": 0.6800000071525574,
+            "sp_en_trans": 0.9209039807319641,
+            "neg_sp_en_trans": 0.9322034120559692,
+            "likely": 0.5750000476837158,
+            "cities_cities_conj": 0.503000020980835
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.27800002694129944,
+            "neg_cities": 0.734000027179718,
+            "larger_than": 0.7249999642372131,
+            "smaller_than": 0.7249999642372131,
+            "sp_en_trans": 0.3757062256336212,
+            "neg_sp_en_trans": 0.6271186470985413,
+            "likely": 0.5610000491142273,
+            "cities_cities_conj": 0.35600000619888306
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 0.9950000047683716,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.9149999618530273,
+            "cities_cities_conj": 0.9149999618530273
+          },
+          "MMProbe": {
+            "cities": 0.9950000047683716,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.7549999952316284,
+            "cities_cities_conj": 0.875
+          }
+        }
+      }
+    },
+    "at_best_layer": {
+      "C3_larger_smaller_to_sp_en_trans": {
+        "LR": 0.5564971566200256,
+        "MM": 0.7514124512672424,
+        "CCS": 0.5819209218025208
+      },
+      "C19_mean_offdiag": {
+        "MM": 0.8362217382951216,
+        "LR": 0.7900366665739001
+      },
+      "oracle_avg": {
+        "LR": 0.9812499955296516,
+        "MM": 0.9543749988079071
+      },
+      "matrix": {
+        "LR": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.8340000510215759,
+            "larger_than": 0.9960000514984131,
+            "smaller_than": 0.9040000438690186,
+            "sp_en_trans": 0.9661017060279846,
+            "neg_sp_en_trans": 0.6751412153244019,
+            "likely": 0.4970000088214874,
+            "cities_cities_conj": 0.9270000457763672
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 0.8470000624656677,
+            "sp_en_trans": 0.9576271176338196,
+            "neg_sp_en_trans": 0.9971751570701599,
+            "likely": 0.5180000066757202,
+            "cities_cities_conj": 0.9250000715255737
+          },
+          "larger_than": {
+            "cities": 0.6810000538825989,
+            "neg_cities": 0.8880000710487366,
+            "larger_than": 1.0,
+            "smaller_than": 0.9820000529289246,
+            "sp_en_trans": 0.8418079018592834,
+            "neg_sp_en_trans": 0.7316384315490723,
+            "likely": 0.5010000467300415,
+            "cities_cities_conj": 0.831000030040741
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8330000638961792,
+            "neg_cities": 0.8200000524520874,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.5564971566200256,
+            "neg_sp_en_trans": 0.6581920981407166,
+            "likely": 0.5300000309944153,
+            "cities_cities_conj": 0.843000054359436
+          },
+          "likely": {
+            "cities": 0.609000027179718,
+            "neg_cities": 0.7310000061988831,
+            "larger_than": 0.9120000600814819,
+            "smaller_than": 0.8480000495910645,
+            "sp_en_trans": 0.694915235042572,
+            "neg_sp_en_trans": 0.7401130199432373,
+            "likely": 0.8650000095367432,
+            "cities_cities_conj": 0.7950000166893005
+          }
+        },
+        "MM": {
+          "cities": {
+            "cities": 1.0,
+            "neg_cities": 0.8110000491142273,
+            "larger_than": 1.0,
+            "smaller_than": 0.9900000691413879,
+            "sp_en_trans": 0.8474576473236084,
+            "neg_sp_en_trans": 0.9689265489578247,
+            "likely": 0.5190000534057617,
+            "cities_cities_conj": 0.8850000500679016
+          },
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 0.9790000319480896,
+            "sp_en_trans": 0.8898305296897888,
+            "neg_sp_en_trans": 0.9971751570701599,
+            "likely": 0.5450000166893005,
+            "cities_cities_conj": 0.9070000648498535
+          },
+          "larger_than": {
+            "cities": 0.675000011920929,
+            "neg_cities": 0.9490000605583191,
+            "larger_than": 1.0,
+            "smaller_than": 0.9590000510215759,
+            "sp_en_trans": 0.8248587846755981,
+            "neg_sp_en_trans": 0.9180790781974792,
+            "likely": 0.5350000262260437,
+            "cities_cities_conj": 0.8420000672340393
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.6860000491142273,
+            "neg_cities": 0.9520000219345093,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.7514124512672424,
+            "neg_sp_en_trans": 0.8728813529014587,
+            "likely": 0.531000018119812,
+            "cities_cities_conj": 0.843000054359436
+          },
+          "likely": {
+            "cities": 0.7350000143051147,
+            "neg_cities": 0.9620000720024109,
+            "larger_than": 0.9700000286102295,
+            "smaller_than": 0.9280000329017639,
+            "sp_en_trans": 0.7401130199432373,
+            "neg_sp_en_trans": 0.8615819215774536,
+            "likely": 0.6349999904632568,
+            "cities_cities_conj": 0.7200000286102295
+          }
+        },
+        "CCS": {
+          "cities+neg_cities": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 0.8420000672340393,
+            "sp_en_trans": 0.9378530979156494,
+            "neg_sp_en_trans": 0.9971751570701599,
+            "likely": 0.5270000100135803,
+            "cities_cities_conj": 0.9130000472068787
+          },
+          "larger_than+smaller_than": {
+            "cities": 0.8250000476837158,
+            "neg_cities": 0.8260000348091125,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 0.5819209218025208,
+            "neg_sp_en_trans": 0.5564971566200256,
+            "likely": 0.5180000066757202,
+            "cities_cities_conj": 0.8410000205039978
+          }
+        },
+        "oracle": {
+          "LRProbe": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.8549999594688416,
+            "cities_cities_conj": 0.9950000047683716
+          },
+          "MMProbe": {
+            "cities": 1.0,
+            "neg_cities": 1.0,
+            "larger_than": 1.0,
+            "smaller_than": 1.0,
+            "sp_en_trans": 1.0,
+            "neg_sp_en_trans": 1.0,
+            "likely": 0.6349999904632568,
+            "cities_cities_conj": 1.0
+          }
+        }
+      }
+    },
+    "sweep_mm_offdiag": {
+      "12": 0.495526471824357,
+      "18": 0.4870643876492977,
+      "19": 0.4822290886870839,
+      "24": 0.5550243296575817,
+      "30": 0.8079529506239024,
+      "36": 0.8362217382951216
+    }
+  }
+}
